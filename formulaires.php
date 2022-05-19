@@ -56,37 +56,6 @@ function afficherMenuUtilisateur()     {
       <?php
 }
 //******************************************************************************
-function afficheFormulaireAjoutLycee()    {
-    	// connexion BDD et récupération des villes
-		$madb = new PDO('sqlite:bdd/bdd.sqlite'); 
-        
-		$requete = "SELECT codepostal,ville FROM lycee;";
-		$resultat = $madb->query($requete);//var_dump($resultat);echo "<br/>";  
-		if($resultat){
-			$lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);			
-		}
-	?>
-	<form  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
-		<fieldset> 
-            
-			<label for="id_nom">Nom : </label><input type="text" name="nom" id="id_mail" placeholder="@mail" required size="20" /><br />
-			<label for="id_adresse">Adresse : </label><input type="text" name="adr" required id="id_pass" size="10" /><br />
-			<label for="id_tel">Téléphone : </label><input type="tel" name="tel" id="id_rue" placeholder="adresse" required size="20" /><br />
-			<label for="id_ville">Ville : </label> 
-			<select id="id_ville" name="ville_ly" size="1">
-				<?php // on se sert de value directement pour l'insertion					
-					foreach($lycees as $lycee){					
-						echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
-					}					
-				?>
-			</select>
-			<input type="submit" value="Insérer"/>
-		</fieldset>
-	</form>
-	<?php
-		echo "<br/>";
-	}// fin afficheFormulaireAjoutUtilisateur
-//******************************************************************************
 function afficheFormulaireChoixUtilisateur(){
         $madb = new PDO('sqlite:bdd/bdd.sqlite');
         $requete = "SELECT DISTINCT noL,nom FROM lycee;";
@@ -99,7 +68,7 @@ function afficheFormulaireChoixUtilisateur(){
 	?>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 		<fieldset>
-			<select id="id_mail" name="mail" size="1">
+			<select id="id_mail" name="noL" size="1">
 				<?php // on se sert de value directement
 					foreach ($lycees as $lycee)
                     {
@@ -117,7 +86,7 @@ function afficheFormulaireChoixUtilisateur(){
 	}// fin afficheFormulaireChoixUtilisateur
 
 //*******************************************************************************************
-function afficheFormulaireAjoutLycee()    {
+function afficheFormulaireAjoutLycee(){
     	// connexion BDD et récupération des villes
 		$madb = new PDO('sqlite:bdd/bdd.sqlite'); 
         
@@ -148,4 +117,40 @@ function afficheFormulaireAjoutLycee()    {
 		echo "<br/>";
 	}// fin afficheFormulaireAjoutLycee
 
+//*******************************************************************************************
+function afficheFormulaireModification($noL){
+
+    // connexion BDD et récupération des villes
+    $madb = new PDO('sqlite:bdd/bdd.sqlite');
+    $noL = $madb->quote($noL);
+    $requete = "SELECT noL,nom,adresse,telephone,ville,codepostal FROM lycee WHERE noL=$noL;";
+
+    $resultat = $madb->query($requete);
+
+    if($resultat){
+        $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
+    }
+    ?>
+    <form  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
+        <fieldset>
+            <?php
+                echo '<label for="id_tel">noL : </label> <input type="text" name="noL" id="id_noL" value="'.$lycees[0]['noL'].'" disabled size="5" /><br />';
+                echo '<label for="id_nom">Nom : </label> <input type="text" name="nom" id="id_nom" value="'.$lycees[0]['nom'].'" required size="20" /><br />';
+                echo '<label for="id_adresse">Adresse : </label> <input type="text" name="adr" id="id_adr" value="'.$lycees[0]['adresse'].'" size="10" /><br />';
+                echo '<label for="id_tel">Téléphone : </label> <input type="tel" name="tel" id="id_tel" value="'.$lycees[0]['telephone'].'" required size="10" /><br />';
+            ?>
+            <label for="id_ville">Ville : </label>
+            <select id="id_ville" name="ville_ly" size="1">
+                <?php // on se sert de value directement pour l'insertion
+                foreach($lycees as $lycee){
+                    echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
+                }
+                ?>
+            </select>
+            <input type="submit" value="Modifier"/>
+        </fieldset>
+    </form>
+    <?php
+    echo "<br/>";
+}// fin afficheFormulaireModification
 ?>

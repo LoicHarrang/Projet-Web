@@ -26,6 +26,10 @@ else
     afficherMenuAdmin();
     contenue_modification();
     afficheFormulaireChoixUtilisateur();
+    if(isset($_POST['noL']))
+    {
+        afficheFormulaireModification($_POST['noL']);
+    }
 }
 ?>
 
