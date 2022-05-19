@@ -121,4 +121,24 @@ function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){		/* on récupèr
     return $retour;
 
 }
+
+//*******************************************************************************************
+function modifierLycee($noL,$nom,$adresse,$tel){
+    $retour=0;
+    $madb = new PDO('sqlite:bdd/bdd.sqlite');
+    // filtrer les paramètres
+    $noL = $madb->quote($noL);
+    $nom = $madb->quote($nom);
+    $adresse = $madb->quote($adresse);
+    $tel = $madb->quote($tel);
+
+    $requete = "UPDATE lycee SET nom=$nom,adresse=$adresse,telephone=$tel WHERE noL=$noL";
+
+    $query = $madb->exec($requete);
+    if($query)
+    {
+        $retour=1;
+    }
+    return $retour;
+}
 ?>

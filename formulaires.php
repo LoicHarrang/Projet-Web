@@ -119,7 +119,7 @@ function afficheFormulaireAjoutLycee(){
 
 //*******************************************************************************************
 function afficheFormulaireModification($noL){
-
+    $_SESSION['modif'] = $noL;
     // connexion BDD et récupération des villes
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
     $noL = $madb->quote($noL);

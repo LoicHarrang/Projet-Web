@@ -30,6 +30,10 @@ else
     {
         afficheFormulaireModification($_POST['noL']);
     }
+    if(isset($_POST['nom']) && isset($_POST['adr']) && isset($_POST['tel']))
+    {
+        modifierLycee($_SESSION['modif'],$_POST['nom'],$_POST['adr'],$_POST['tel']);
+    }
 }
 ?>
 
