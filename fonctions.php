@@ -88,4 +88,37 @@ function afficheTableauHTML($tab){
     echo '</table>';
     echo '<hr/>';
 }
+//*******************************************************************************************
+function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){		/* on récupère directement le code de la ville qui a été transmis dans l'attribut value de la balise <option> du formulaire
+    Il n'est donc pas nécessaire de rechercher le code INSEE de la ville*/
+    $retour=0;
+    $madb = new PDO('sqlite:bdd/bdd.sqlite'); 	
+    // filtrer les paramètres
+    $noL = $madb->quote($noL);		
+    $nom = $madb->quote($nom);
+    $adresse= $madb->quote($adresse);
+    $codepostal = $madb->quote($codepostal);
+    $telephone = $madb->quote($telephone);
+
+
+    //Recuperer la ville grace au code postal
+    $ville = "SELECT ville FROM lycee where codepostal == $codepostal;";
+    $query= $madb->query($ville);
+    if($query)
+    {
+        $res = $query->fetch(PDO::FETCH_ASSOC);
+        $ville = $res['ville'];
+    }
+    $ville = $madb->quote($ville);
+    var_dump($ville,$noL);
+    // requête
+    $requete ="INSERT INTO lycee VALUES ($noL,$nom,$adresse,$codepostal,$ville,$telephone);";
+    $resultat =$madb->exec($requete);
+    if ($resultat == false ) 
+        $retour = 0;
+    else 
+        $retour = $resultat;
+    return $retour;
+
+}
 ?>
