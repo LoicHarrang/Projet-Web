@@ -30,25 +30,26 @@
 		</nav>
 		<article>
 			<?php
-				contenue_accueil_insertion();
 				if(!empty($_SESSION) && $_SESSION['statut']=='administrateur')	{
+                    contenue_accueil_insertion();
+                    echo "<br>";
 					afficheFormulaireAjoutLycee();
-                    /*
 					if(!empty($_POST)){
-						var_dump($_POST['ville_etu']);
-						$res = ajoutUtilisateur($_POST['mail'],$_POST['pass'],$_POST['rue'],$_POST['ville_etu'],$_POST['status']);
-						//$res = ajoutUtilisateur('ni@prof.fr','ni','24 rue fontaine','22130','Prof');
+						var_dump($_POST['ville_ly']);
+						$res = ajoutLycee($_POST['noL'],$_POST['nom'],$_POST['adr'],$_POST['ville_ly'],$_POST['tel']);
 						var_dump($res);
 						if ($res==1){
+							/*
 							$tab = listeCompte();
 							afficheTableau($tab);
-
+							*/
+							echo "<h4 class='text-center'> La création a marché</h4>";
 						}
 						else{
-							echo "<p> La création a échoué</p>";
+							echo "<h4> La création a échoué</h4>";
 						}
 					}
-                    */
+                    
                     ?>
                     
                                                     <br />
