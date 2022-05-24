@@ -34,18 +34,32 @@
                     echo "<br>";
 					afficheFormulaireAjoutLycee();
 					if(!empty($_POST)){
-						//var_dump($_POST['ville_ly']);
-						$res = ajoutLycee($_POST['noL'],$_POST['nom'],$_POST['adr'],$_POST['ville_ly'],$_POST['tel']);
-						//var_dump($res);
-						if ($res==1){
-							echo '<h4 class="text-center"> Le lycée '.$_POST['nom'].' à correctement été aouté à la base</h4>';
-                            afficheListeLyceeFiltre($_POST['ville_ly']);
+						if(isset($_POST['captcha'])){
+							if($_POST['captcha']==$_SESSION['code']){ 
+								//Si le captcha est bon 
+								
+								//Fonction ajoutant un Lycée
+								$res = ajoutLycee($_POST['noL'],$_POST['nom'],$_POST['adr'],$_POST['ville_ly'],$_POST['tel']);
+								echo "Code correct";
+								var_dump($_POST['ville_ly']);
+								var_dump($res);
+
+								if ($res==1){
+									echo '<h4 class="text-center"> Le lycée '.$_POST['nom'].' à correctement été aouté à la base</h4>';
+                            						afficheListeLyceeFiltre($_POST['ville_ly']);
+								}
+								else{
+									echo "<h4> La création a échoué</h4>";
+								}
+
+							}
+
+							//Si le captcha n'est pas bon
+							else {
+								echo "Code incorrect";
+							}
 						}
-						else{
-							echo "<h4> La création a échoué</h4>";
-						}
-                    }
-				}
+					}
 			?>	
             
 		</article>
