@@ -103,24 +103,28 @@ function afficheFormulaireAjoutLycee(){
 	?>
 	<form  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
 		<fieldset> 
-            <label for="id_tel">noL : </label> <input type="text" name="noL" id="id_noL" placeholder="LYC_XX" required size="5" /><br />
-			<label for="id_nom">Nom : </label> <input type="text" name="nom" id="id_nom" placeholder="Nom" required size="20" /><br />
-			<label for="id_adresse">Adresse : </label> <input type="text" name="adr" required id="id_adr" size="10"  placeholder="adresse" /><br />
-			<label for="id_tel">Téléphone : </label> <input type="tel" name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10" /><br />
-			<label for="id_ville">Ville : </label> 
-			<select id="id_ville" name="ville_ly" size="1">
-				<?php // on se sert de value directement pour l'insertion					
-					foreach($lycees as $lycee){					
-						echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
-					}					
-				?>
-			</select>
-			<input type="submit" value="Insérer"/>
-		</fieldset>
-	</form>
-	<?php
-		echo "<br/>";
+		    <label for="id_tel">noL : </label> <input type="text" name="noL" id="id_noL" placeholder="LYC_XX" required size="5" /><br />
+				<label for="id_nom">Nom : </label> <input type="text" name="nom" id="id_nom" placeholder="Nom" required size="20" /><br />
+				<label for="id_adresse">Adresse : </label> <input type="text" name="adr" required id="id_adr" size="10"  placeholder="adresse" /><br />
+				<label for="id_tel">Téléphone : </label> <input type="tel" name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10" /><br />
+				<label for="id_ville">Ville : </label> 
+				<select id="id_ville" name="ville_ly" size="1">
+					<?php // on se sert de value directement pour l'insertion					
+						foreach($lycees as $lycee){					
+							echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
+						}					
+					?>
+				</select>
+				</br>
 
+				 <input type="text" name="captcha"/>
+				<img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha" style="cursor:pointer;">
+				<input type="submit" value="Insérer"/>
+       		</fieldset>
+    	</form>
+ <?php
+                
+	echo "<br/>";
 	}// fin afficheFormulaireAjoutLycee
 
 //*******************************************************************************************
