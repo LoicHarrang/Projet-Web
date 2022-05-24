@@ -21,6 +21,7 @@
     {
         afficheFormulaireConnexion();
         var_dump($_POST['pass']);
+        
         if(!empty($_POST))
         {
             if(!empty($_POST['login']) && !empty($_POST['pass']));
