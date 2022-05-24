@@ -101,14 +101,14 @@ function afficheFormulaireAjoutLycee(){
 			$lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);			
 		}
 	?>
-	<form  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
+	<form  class="offset-4 col-6" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
 		<fieldset> 
-		    <label for="id_tel">noL : </label> <input type="text" name="noL" id="id_noL" placeholder="LYC_XX" required size="5" /><br />
-				<label for="id_nom">Nom : </label> <input type="text" name="nom" id="id_nom" placeholder="Nom" required size="20" /><br />
-				<label for="id_adresse">Adresse : </label> <input type="text" name="adr" required id="id_adr" size="10"  placeholder="adresse" /><br />
-				<label for="id_tel">Téléphone : </label> <input type="tel" name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10" /><br />
-				<label for="id_ville">Ville : </label> 
-				<select id="id_ville" name="ville_ly" size="1">
+		    <label for="id_tel">noL : </label>    <input type="text" name="noL" id="id_noL" placeholder="LYC_XX" required size="5" pattern ='^LYC_[0-9]{1,4}' /><br />
+				<label for="id_nom">Nom :   </label>    <input class='my-1' type="text" name="nom" id="id_nom" placeholder="Nom" required size="20" /><br />
+				<label for="id_adresse">Adresse :   </label>    <input class='my-1'type="text" name="adr" required id="id_adr" size="10"  placeholder="adresse" /><br />
+				<label for="id_tel">Téléphone :  </label>   <input class='my-1' type="tel" name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10" pattern = '^0[0-9]{9}'/><br />
+				<label for="id_ville">Ville :    </label> 
+				<select class="my-1" id="id_ville" name="ville_ly" size="1">
 					<?php // on se sert de value directement pour l'insertion					
 						foreach($lycees as $lycee){					
 							echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
@@ -118,8 +118,8 @@ function afficheFormulaireAjoutLycee(){
 				</br>
 
 				 <input type="text" name="captcha"/>
-				<img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha" style="cursor:pointer;">
-				<input type="submit" value="Insérer"/>
+				<img class="my-1" src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha" style="cursor:pointer;"/></br>
+				<input class='my-1' type="submit" value="Insérer"/>
        		</fieldset>
     	</form>
  <?php
@@ -141,7 +141,7 @@ function afficheFormulaireModification($noL){
         $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
-    <form  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
+    <form  class="offset-4 col-5 " action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
         <fieldset>
             <?php
                 echo '<label for="id_tel">noL : </label> <input type="text" name="noL" id="id_noL" value="'.$lycees[0]['noL'].'" disabled size="5" /><br />';
