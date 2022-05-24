@@ -52,8 +52,8 @@ function afficherMenuUtilisateur()     {
     <div class="container ">
         <header class="d-flex justify-content-center py-3">
           <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur"> Lister les utilisateurs</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur_ville"> Lister les utilisateurs par ville</a></li>
+            <li class="nav-item"><a class="nav-link text-black" href="index.php"> Lister les lycées</a></li>
+            <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur_ville"> Lister les lycées par ville</a></li>
             <li class="nav-item"><a class="nav-link text-black" href="index.php?action=logout" title="Déconnexion">Se deconnecter</a></li>
         </ul>
         </header>
@@ -120,6 +120,7 @@ function afficheFormulaireAjoutLycee(){
 	</form>
 	<?php
 		echo "<br/>";
+
 	}// fin afficheFormulaireAjoutLycee
 
 //*******************************************************************************************
@@ -188,8 +189,8 @@ function afficheListeLycee(){
             <tr>
                 <td>'.$lycee['nom'].'</td>
                 <td>'.$lycee['adresse'].'</td>
-                <td>@'.$lycee['ville'].'</td>
-                <td>@'.$lycee['telephone'].'</td>
+                <td>'.$lycee['ville'].'</td>
+                <td>'.$lycee['telephone'].'</td>
             </tr>';
         }
         ?>
@@ -259,8 +260,8 @@ function afficheFormulaireFiltre(){
             <tr>
                 <td>'.$lycee['nom'].'</td>
                 <td>'.$lycee['adresse'].'</td>
-                <td>@'.$lycee['ville'].'</td>
-                <td>@'.$lycee['telephone'].'</td>
+                <td>'.$lycee['ville'].'</td>
+                <td>'.$lycee['telephone'].'</td>
             </tr>';
               }
               ?>

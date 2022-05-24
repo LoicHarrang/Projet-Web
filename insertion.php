@@ -38,7 +38,7 @@
 						$res = ajoutLycee($_POST['noL'],$_POST['nom'],$_POST['adr'],$_POST['ville_ly'],$_POST['tel']);
 						//var_dump($res);
 						if ($res==1){
-							echo "<h4 class='text-center'> La création a marché</h4>";
+							echo '<h4 class="text-center"> Le lycée '.$_POST['nom'].' à correctement été aouté à la base</h4>';
                             afficheListeLyceeFiltre($_POST['ville_ly']);
 						}
 						else{
