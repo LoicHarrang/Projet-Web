@@ -25,7 +25,6 @@
 					afficherMenuAdmin();
                     
 				}
-				
 			?>
 		</nav>
 		<article>
@@ -35,34 +34,18 @@
                     echo "<br>";
 					afficheFormulaireAjoutLycee();
 					if(!empty($_POST)){
-						var_dump($_POST['ville_ly']);
+						//var_dump($_POST['ville_ly']);
 						$res = ajoutLycee($_POST['noL'],$_POST['nom'],$_POST['adr'],$_POST['ville_ly'],$_POST['tel']);
-						var_dump($res);
+						//var_dump($res);
 						if ($res==1){
-							/*
-							$tab = listeCompte();
-							afficheTableau($tab);
-							*/
 							echo "<h4 class='text-center'> La création a marché</h4>";
+                            afficheListeLyceeFiltre($_POST['ville_ly']);
 						}
 						else{
 							echo "<h4> La création a échoué</h4>";
 						}
-					}
-                    
-                    ?>
-                    
-                                                    <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php
+                    }
 				}
-				
-				
 			?>	
             
 		</article>

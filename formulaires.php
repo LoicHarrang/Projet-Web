@@ -1,5 +1,10 @@
 <?php
 //******************************************************************************
+function afficheMessageAccueil()  {
+    echo "<h3> Bienvenue ".$_SESSION["login"]."</br>
+    Vous êtes un ".$_SESSION["statut"]."</h3>";
+}
+//******************************************************************************
 function afficheFormulaireConnexion(){
 ?>
 <main class="offset-4 col-4 my-5 form-signin">
@@ -28,11 +33,11 @@ function afficherMenuAdmin()     {
     <div class="container ">
         <header class="d-flex justify-content-center py-3">
           <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur"> Lister les utilisateurs</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur_ville"> Lister les utilisateurs par ville</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="insertion.php?action=inserer_utilisateur"> Insérer un utilisateur</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="">Supprimer un utilisateur</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="modification.php">Modifier un utilisateur</a></li>
+            <li class="nav-item"><a class="nav-link text-black" href="index.php"> Accueil</a></li>
+            <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur_ville"> Lister les lycées par ville</a></li>
+            <li class="nav-item"><a class="nav-link text-black" href="insertion.php?action=inserer_utilisateur"> Insérer un lycée</a></li>
+            <li class="nav-item"><a class="nav-link text-black" href="">Supprimer un lycée</a></li>
+            <li class="nav-item"><a class="nav-link text-black" href="modification.php">Modifier un lycée</a></li>
             <li class="nav-item"><a class="nav-link text-black" href="index.php?action=logout" title="Déconnexion">Se deconnecter</a></li>
         </ul>
         </header>
@@ -153,4 +158,115 @@ function afficheFormulaireModification($noL){
     <?php
     echo "<br/>";
 }// fin afficheFormulaireModification
+
+    //*******************************************************************************************
+function afficheListeLycee(){
+    $madb = new PDO('sqlite:bdd/bdd.sqlite');
+
+    $requete = "SELECT DISTINCT nom,adresse,ville,telephone FROM lycee;";
+
+    $resultat = $madb->query($requete);
+
+    if($resultat){
+        $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
+    }
+    ?>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Ville</th>
+            <th scope="col">Téléphone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($lycees as $lycee)
+        {
+            echo '
+            <tr>
+                <td>'.$lycee['nom'].'</td>
+                <td>'.$lycee['adresse'].'</td>
+                <td>@'.$lycee['ville'].'</td>
+                <td>@'.$lycee['telephone'].'</td>
+            </tr>';
+        }
+        ?>
+        </tbody>
+    </table>
+        <?php
+    echo "<br/>";
+}// fin afficheListeLycée
+//*******************************************************************************************
+
+function afficheFormulaireFiltre(){
+    echo "<br/>";
+    $madb = new PDO('sqlite:bdd/bdd.sqlite');
+    $requete = "SELECT DISTINCT ville,codepostal FROM lycee;";
+
+    $query = $madb->query($requete);
+
+    if($query)
+    {
+        $villes = $query->fetchAll(PDO::FETCH_ASSOC);}
+
+    ?>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <fieldset>
+            <label for="id_ville">Ville :</label>
+            <select id="id_ville" name="ville" size="1">
+                <?php // générer la liste des options à partir de $villes
+                      foreach ($villes as $ville)
+                      {
+                          echo '<option value='.$ville['codepostal'].'> '.$ville['codepostal'].' '.$ville['ville'].' </option>';
+                      }
+                      ?>
+                  </select>
+                  <input type="submit" value="Rechercher Lycée par Ville"/>
+              </fieldset>
+          </form>
+          <?php
+          echo "<br/>";
+      }// fin afficheFormulaireFiltre
+
+      //*******************************************************************************************
+      function afficheListeLyceeFiltre($cp){
+          $madb = new PDO('sqlite:bdd/bdd.sqlite');
+
+          $requete = "SELECT DISTINCT nom,adresse,ville,telephone FROM lycee WHERE codepostal=$cp;";
+
+          $resultat = $madb->query($requete);
+
+          if($resultat){
+              $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
+          }
+          ?>
+          <table class="table">
+              <thead>
+              <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Adresse</th>
+                  <th scope="col">Ville</th>
+                  <th scope="col">Téléphone</th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php
+              foreach ($lycees as $lycee)
+              {
+                  echo '
+            <tr>
+                <td>'.$lycee['nom'].'</td>
+                <td>'.$lycee['adresse'].'</td>
+                <td>@'.$lycee['ville'].'</td>
+                <td>@'.$lycee['telephone'].'</td>
+            </tr>';
+              }
+              ?>
+              </tbody>
+          </table>
+          <?php
+          echo "<br/>";
+      }// fin afficheListeLyceeFiltre
 ?>

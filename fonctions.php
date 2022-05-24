@@ -110,7 +110,7 @@ function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){		/* on récupèr
         $ville = $res['ville'];
     }
     $ville = $madb->quote($ville);
-    var_dump($ville,$noL);
+    //var_dump($ville,$noL);
     // requête
     $requete ="INSERT INTO lycee VALUES ($noL,$nom,$adresse,$codepostal,$ville,$telephone);";
     $resultat =$madb->exec($requete);
