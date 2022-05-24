@@ -40,9 +40,7 @@
 								
 								//Fonction ajoutant un Lycée
 								$res = ajoutLycee($_POST['noL'],$_POST['nom'],$_POST['adr'],$_POST['ville_ly'],$_POST['tel']);
-								echo "Code correct";
-								var_dump($_POST['ville_ly']);
-								var_dump($res);
+								echo "<p class='text-center'>Code correct</p>";
 
 								if ($res==1){
 									echo '<h4 class="text-center"> Le lycée '.$_POST['nom'].' à correctement été aouté à la base</h4>';
@@ -56,7 +54,7 @@
 
 							//Si le captcha n'est pas bon
 							else {
-								echo "Code incorrect";
+								echo "<p class='text-center'>Code incorrect</p>";
 							}
 						}
 					}
