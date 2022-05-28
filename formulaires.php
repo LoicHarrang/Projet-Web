@@ -8,19 +8,20 @@ function afficheMessageAccueil()  {
 function afficheFormulaireConnexion(){
 ?>
 <main class="offset-4 col-4 my-5 form-signin">
-    <form id="form1" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form id="form_connect" action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="post" >
         <h1 class="h3 mb-3 fw-normal">Veuillez vous connecter</h1>
 
         <div class="form-floating my-2">
             <input type="email" name="login" class="form-control" id="id_mail" placeholder="mail@mail.com">
             <label for="id_mail">Adresse Email</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating" id='test_mdp'>
             <input type="password" name="pass" class="form-control" id="id_pass" placeholder="UnSuperMotDePasse" required size="8">
             <label for="id_pass">Mot de Passe</label>
+            <p id="msg_mdp"><p>
         </div>
 
-        <button class="w-100 btn btn-lg btn-primary mt-2" type="submit" name="connect" value="Connexion">Connexion</button>
+        <button class="w-100 btn btn-lg btn-primary mt-2" type="submit" name="connect" value="Connexion" onclick="return validMdp()">Connexion</button>
     </form>
 </main>
 <?php
