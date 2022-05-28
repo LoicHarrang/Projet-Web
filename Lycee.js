@@ -1,16 +1,24 @@
 //*******************************************************************************************
-function mdpValide(){
-    var mdp = document.getElementById(id_pass).value;
+function validMdp() {
+    var res = false;
+    var text = document.getElementById('msg_mdp');
+    var mdp = document.getElementById('id_pass').value;
     console.log(mdp);
-    var res = false
     var pass = /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
-    res = pass.test(mdp);
-    if (res == 1) {
-    console.log(res);
-    }
-    else {
-        console.log('erreur');
-    }
-    return false; // retourne Vrai ou Faux
+    if(pass.test(mdp)==true && mdp.length > 8){
+        //alert("Votre mdp est bon");
+        res = true;
+       
+        }
+       else
+       { 
+           res = false;
+           var message = "Le mot de passe est invalide!!! Il doit faire 8 caractères et doit contenir au moins 1 majuscule, 1 minuscule , 1caractere speciale et un chiffre ";
+           console.log(message);
+           text.innerHTML = message;
+           text.style.color = 'red';
+           
+       }
+   return res
 
 }
