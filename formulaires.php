@@ -37,7 +37,6 @@ function afficherMenuAdmin()     {
             <li class="nav-item"><a class="nav-link text-black" href="index.php"> Accueil</a></li>
             <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur_ville"> Lister les lycées par ville</a></li>
             <li class="nav-item"><a class="nav-link text-black" href="insertion.php?action=inserer_utilisateur"> Insérer un lycée</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="">Supprimer un lycée</a></li>
             <li class="nav-item"><a class="nav-link text-black" href="modification.php">Modifier un lycée</a></li>
             <li class="nav-item"><a class="nav-link text-black" href="index.php?action=logout" title="Déconnexion">Se deconnecter</a></li>
         </ul>
@@ -275,4 +274,33 @@ function afficheFormulaireFiltre(){
           <?php
           echo "<br/>";
       }// fin afficheListeLyceeFiltre
+
+      //*******************************************************************************************
+      function afficheCarousel(){
+          ?>
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <img src="img/lycee1.jpg" class="d-block w-100" alt="Lycée 1" width="930" height="580">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="img/lycee2.jpg" class="d-block w-100" alt="Lycée 2" width="930" height="580">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="img/lycee3.jpg" class="d-block w-100" alt="Lycée 3" width="930" height="580">
+                  </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </button>
+          </div>
+        <?php
+      }// fin afficheCarousel
+
+
 ?>

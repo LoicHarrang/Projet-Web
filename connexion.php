@@ -20,13 +20,11 @@
     else
     {
         afficheFormulaireConnexion();
-        var_dump($_POST['pass']);
         
         if(!empty($_POST))
         {
             if(!empty($_POST['login']) && !empty($_POST['pass']));
             {
-                if(!empty($_POST['pass'])) var_dump($_POST['pass']);
                 $verif = verifierCompte($_POST['login'],$_POST['pass']);
                 if($verif)
                 {
