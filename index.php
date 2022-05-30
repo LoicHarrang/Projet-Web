@@ -37,7 +37,7 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
             <div class="container">
                 <div class="text-center card-title">
                     <!-- Heading -->
-                    <h2 class="h2 text-center mb-4 my-sm-4 ">Page d'accueil des Lycées de France</h2>
+                    <h2 class="h2 text-center mb-4 my-sm-4 ">Page d'accueil des Lycées de Bretagne</h2>
                 </div>
                 <div class="card-text ">
                     <p class="text-center">

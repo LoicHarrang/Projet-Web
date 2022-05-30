@@ -288,7 +288,7 @@ function afficheFormulaireFiltre(){
           }
 
           echo
-          '<h4><br> Voici les différents BAC proposé dans votre département !<br></h4>
+          '<h4><br> Voici les différents BAC proposé dans votre région !<br></h4>
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner">
                   <div class="carousel-item active">
