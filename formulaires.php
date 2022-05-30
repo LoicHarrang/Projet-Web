@@ -277,17 +277,37 @@ function afficheFormulaireFiltre(){
 
       //*******************************************************************************************
       function afficheCarousel(){
-          ?>
-          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          $madb = new PDO('sqlite:bdd/bdd.sqlite');
+
+          $requete = "SELECT DISTINCT image FROM bac;";
+
+          $resultat = $madb->query($requete);
+
+          if($resultat){
+              $image = $resultat->fetchAll(PDO::FETCH_ASSOC);
+          }
+
+          echo
+          '<h4><br> Voici les différents BAC proposé dans votre département !<br></h4>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner">
                   <div class="carousel-item active">
-                      <img src="img/lycee1.jpg" class="d-block w-100" alt="Lycée 1" width="930" height="580">
+                      <img src="'.$image[0]['image'].'" class="d-block w-100" alt="" width="390" height="390">
                   </div>
                   <div class="carousel-item">
-                      <img src="img/lycee2.jpg" class="d-block w-100" alt="Lycée 2" width="930" height="580">
+                      <img src="'.$image[1]['image'].'" class="d-block w-100" alt="" width="390" height="390">
                   </div>
                   <div class="carousel-item">
-                      <img src="img/lycee3.jpg" class="d-block w-100" alt="Lycée 3" width="930" height="580">
+                      <img src="'.$image[2]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="'.$image[3]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="'.$image[4]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="'.$image[5]['image'].'" class="d-block w-100" alt="" width="390" height="390">
                   </div>
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -298,8 +318,7 @@ function afficheFormulaireFiltre(){
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
               </button>
-          </div>
-        <?php
+          </div>';
       }// fin afficheCarousel
 
 
