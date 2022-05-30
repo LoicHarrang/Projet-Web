@@ -1,3 +1,6 @@
+<script src="Lycee.js" type="text/javascript"></script>
+<!-- <script src="ajax/Ajax_Modification.js" type="text/javascript"></script>
+ -->
 <?php
 //******************************************************************************
 function afficheMessageAccueil()  {
@@ -6,26 +9,26 @@ function afficheMessageAccueil()  {
 }
 //******************************************************************************
 function afficheFormulaireConnexion(){
-?>
-<main class="offset-4 col-4 my-5 form-signin">
-    <form id="form_connect" action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="post" >
-        <h1 class="h3 mb-3 fw-normal">Veuillez vous connecter</h1>
-
-        <div class="form-floating my-2">
-            <input type="email" name="login" class="form-control" id="id_mail" placeholder="mail@mail.com">
-            <label for="id_mail">Adresse Email</label>
-        </div>
-        <div class="form-floating" id='test_mdp'>
-            <input type="password" name="pass" class="form-control" id="id_pass" placeholder="UnSuperMotDePasse" required size="8">
-            <label for="id_pass">Mot de Passe</label>
-            <p id="msg_mdp"><p>
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary mt-2" type="submit" name="connect" value="Connexion" onclick="return validMdp()">Connexion</button>
-    </form>
-</main>
-<?php
-}
+    ?>
+    <main class="offset-4 col-4 my-5 form-signin">
+        <form id="form_connect" action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="post" >
+            <h1 class="h3 mb-3 fw-normal">Veuillez vous connecter</h1>
+    
+            <div class="form-floating my-2">
+                <input type="email" name="login" class="form-control" id="id_mail" placeholder="mail@mail.com">
+                <label for="id_mail">Adresse Email</label>
+            </div>
+            <div class="form-floating" id='test_mdp'>
+                <input type="password" name="pass" class="form-control" id="id_pass" placeholder="UnSuperMotDePasse" required size="8">
+                <label for="id_pass">Mot de Passe</label>
+                <p id="msg_mdp"><p>
+            </div>
+    
+            <button class="w-100 btn btn-lg btn-primary mt-2" type="submit" name="connect" value="Connexion" onclick="return validMdp()">Connexion</button>
+        </form>
+    </main>
+    <?php
+    }
 //******************************************************************************
 function afficherMenuAdmin()     {
     ?>
@@ -71,9 +74,9 @@ function afficheFormulaireChoixUtilisateur(){
         }
 
 	?>
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" >
 		<fieldset>
-			<select id="id_mail" name="noL" size="1">
+			<select id="id_mail" name="noL" size="1" onchange="formulaireModification(this)">
 				<?php // on se sert de value directement
 					foreach ($lycees as $lycee)
                     {
@@ -81,9 +84,6 @@ function afficheFormulaireChoixUtilisateur(){
                     }
 				?>
 			</select>
-            <?php
-                echo '<input type="submit" value="Modifier"/>';
-            ?>
 		</fieldset>
 	</form>
 	<?php
@@ -101,14 +101,14 @@ function afficheFormulaireAjoutLycee(){
 			$lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);			
 		}
 	?>
-	<form  class="offset-4 col-6" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
+	<form class="offset-4 col-4" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
 		<fieldset> 
-		    <label for="id_tel">noL : </label>    <input type="text" name="noL" id="id_noL" placeholder="LYC_XX" required size="5" pattern ='^LYC_[0-9]{1,4}' /><br />
-				<label for="id_nom">Nom :   </label>    <input class='my-1' type="text" name="nom" id="id_nom" placeholder="Nom" required size="20" /><br />
-				<label for="id_adresse">Adresse :   </label>    <input class='my-1'type="text" name="adr" required id="id_adr" size="10"  placeholder="adresse" /><br />
-				<label for="id_tel">Téléphone :  </label>   <input class='my-1' type="tel" name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10" pattern = '^0[0-9]{9}'/><br />
-				<label for="id_ville">Ville :    </label> 
-				<select class="my-1" id="id_ville" name="ville_ly" size="1">
+		    <label for="id_tel">noL : </label> <input type="text" name="noL" id="id_noL" placeholder="LYC_XX" required size="5" pattern ='^LYC_[0-9]{1,4}' /><br />
+				<label for="id_nom">Nom : </label> <input type="text" name="nom" id="id_nom" placeholder="Nom" required size="20" /><br />
+				<label for="id_adresse">Adresse : </label> <input type="text" name="adr" required id="id_adr" size="10"  placeholder="adresse" /><br />
+				<label for="id_tel">Téléphone : </label> <input type="tel" name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10" pattern = '^0[0-9]{9}'/><br />
+				<label for="id_ville">Ville : </label> 
+				<select id="id_ville" name="ville_ly" size="1">
 					<?php // on se sert de value directement pour l'insertion					
 						foreach($lycees as $lycee){					
 							echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
@@ -118,8 +118,8 @@ function afficheFormulaireAjoutLycee(){
 				</br>
 
 				 <input type="text" name="captcha"/>
-				<img class="my-1" src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha" style="cursor:pointer;"/></br>
-				<input class='my-1' type="submit" value="Insérer"/>
+				<img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha" style="cursor:pointer;">
+				<input type="submit" value="Insérer"/>
        		</fieldset>
     	</form>
  <?php
@@ -141,7 +141,7 @@ function afficheFormulaireModification($noL){
         $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
-    <form  class="offset-4 col-5 " action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
+    <div >
         <fieldset>
             <?php
                 echo '<label for="id_tel">noL : </label> <input type="text" name="noL" id="id_noL" value="'.$lycees[0]['noL'].'" disabled size="5" /><br />';
@@ -157,9 +157,9 @@ function afficheFormulaireModification($noL){
                 }
                 ?>
             </select>
-            <input type="submit" value="Modifier"/>
+            <button onclick='return listeFiltreUtilisateurs()'> Modifier </button>
         </fieldset>
-    </form>
+    </div>
     <?php
     echo "<br/>";
 }// fin afficheFormulaireModification
@@ -274,52 +274,4 @@ function afficheFormulaireFiltre(){
           <?php
           echo "<br/>";
       }// fin afficheListeLyceeFiltre
-
-      //*******************************************************************************************
-      function afficheCarousel(){
-          $madb = new PDO('sqlite:bdd/bdd.sqlite');
-
-          $requete = "SELECT DISTINCT image FROM bac;";
-
-          $resultat = $madb->query($requete);
-
-          if($resultat){
-              $image = $resultat->fetchAll(PDO::FETCH_ASSOC);
-          }
-
-          echo
-          '<h4><br> Voici les différents BAC proposé dans votre région !<br></h4>
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                  <div class="carousel-item active">
-                      <img src="'.$image[0]['image'].'" class="d-block w-100" alt="" width="390" height="390">
-                  </div>
-                  <div class="carousel-item">
-                      <img src="'.$image[1]['image'].'" class="d-block w-100" alt="" width="390" height="390">
-                  </div>
-                  <div class="carousel-item">
-                      <img src="'.$image[2]['image'].'" class="d-block w-100" alt="" width="390" height="390">
-                  </div>
-                  <div class="carousel-item">
-                      <img src="'.$image[3]['image'].'" class="d-block w-100" alt="" width="390" height="390">
-                  </div>
-                  <div class="carousel-item">
-                      <img src="'.$image[4]['image'].'" class="d-block w-100" alt="" width="390" height="390">
-                  </div>
-                  <div class="carousel-item">
-                      <img src="'.$image[5]['image'].'" class="d-block w-100" alt="" width="390" height="390">
-                  </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-              </button>
-          </div>';
-      }// fin afficheCarousel
-
-
 ?>

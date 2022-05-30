@@ -29,33 +29,39 @@
 		</nav>
 		<article>
 			<?php
-				if(!empty($_SESSION) && $_SESSION['statut']=='administrateur') {
+				if(!empty($_SESSION) && $_SESSION['statut']=='administrateur')	{
                     contenue_accueil_insertion();
                     echo "<br>";
-                    afficheFormulaireAjoutLycee();
-                    if (!empty($_POST)) {
-                        if (isset($_POST['captcha'])) {
-                            if ($_POST['captcha'] == $_SESSION['code']) {
-                                //Si le captcha est bon
+					afficheFormulaireAjoutLycee();
+					var_dump($_POST);
+					if(!empty($_POST)){
+						if(isset($_POST['captcha'])){
+							if($_POST['captcha']==$_SESSION['code']){ 
+								//Si le captcha est bon 
+								
+								//Fonction ajoutant un Lycée
+								$res = ajoutLycee($_POST['noL'],$_POST['nom'],$_POST['adr'],$_POST['ville_ly'],$_POST['tel']);
+								echo "Code correct";
+								var_dump($_POST['ville_ly']);
+								var_dump($res);
 
-                                //Fonction ajoutant un Lycée
-                                $res = ajoutLycee($_POST['noL'], $_POST['nom'], $_POST['adr'], $_POST['ville_ly'], $_POST['tel']);
-                                echo "<p class='text-center'>Code correct</p>";
+								if ($res==1){
+									echo '<h4 class="text-center"> Le lycée '.$_POST['nom'].' à correctement été aouté à la base</h4>';
+                            		afficheListeLyceeFiltre($_POST['ville_ly']);
+								}
+								else{
+									echo "<h4> La création a échoué</h4>";
+								}
 
-                                if ($res == 1) {
-                                    echo '<h4 class="text-center"> Le lycée ' . $_POST['nom'] . ' à correctement été aouté à la base</h4>';
-                                    afficheListeLyceeFiltre($_POST['ville_ly']);
-                                } else {
-                                    echo "<h4> La création a échoué</h4>";
-                                }
+							}
 
-                            } //Si le captcha n'est pas bon
-                            else {
-                                echo "<p class='text-center'>Code incorrect</p>";
-                            }
-                        }
-                    }
-                }
+							//Si le captcha n'est pas bon
+							else {
+								echo "Code incorrect";
+							}
+						}
+					}
+				}
 			?>	
             
 		</article>
@@ -64,4 +70,5 @@
 			<a href="javascript:history.back()">Retour à la page précédente</a>
 		</footer>
 	</body>
-</html>
+</html>	
+
