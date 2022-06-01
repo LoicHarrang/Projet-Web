@@ -274,4 +274,50 @@ function afficheFormulaireFiltre(){
           <?php
           echo "<br/>";
       }// fin afficheListeLyceeFiltre
+
+      //*******************************************************************************************
+      function afficheCarousel(){
+          $madb = new PDO('sqlite:bdd/bdd.sqlite');
+
+          $requete = "SELECT DISTINCT image FROM bac;";
+
+          $resultat = $madb->query($requete);
+
+          if($resultat){
+              $image = $resultat->fetchAll(PDO::FETCH_ASSOC);
+          }
+
+          echo
+              '<h4><br> Voici les différents BAC proposé dans votre région !<br></h4>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <img src="'.$image[0]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="'.$image[1]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="'.$image[2]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="'.$image[3]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="'.$image[4]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                  </div>
+                  <div class="carousel-item">
+                      <img src="'.$image[5]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                  </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </button>
+          </div>';
+      }// fin afficheCarousel
 ?>
