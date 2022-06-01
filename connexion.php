@@ -20,7 +20,6 @@
     else
     {
         afficheFormulaireConnexion();
-
         
         if(!empty($_POST))
         {
@@ -34,11 +33,23 @@
                     $_SESSION['login'] = $_POST['login'];
                     $_SESSION['pass'] = $_POST['pass'];
                     $_SESSION['statut'] = $statut;
+
+                    setlocale(LC_TIME, "fr_FR", "French");
+                    $monfichier = fopen('access.log', 'a+');
+                    fputs($monfichier, $_SESSION['login']." (Status : ".$_SESSION['statut'].") depuis la machine ".$_SERVER['REMOTE_ADDR']." le ".strftime("%A %d %B %G", strtotime(date('Y-m-d'))) ." à ".date('h:i:s A'));
+                    fputs($monfichier, "\n");
+                    fclose($monfichier);
+
                     redirect('index.php',2);
                 }
                 else
                 {
                     echo '<p>Connexion impossible (Merci de vérifier vos informations)</p>';
+                    setlocale(LC_TIME, "fr_FR", "French");
+                    $monfichier = fopen('echoué.log', 'a+');
+                    fputs($monfichier, $_POST['login']." depuis la machine ".$_SERVER['REMOTE_ADDR']." le ".strftime("%A %d %B %G", strtotime(date('Y-m-d'))) ." à ".date('h:i:s A'));
+                    fputs($monfichier, "\n");
+                    fclose($monfichier);
                 }
             }
         }
