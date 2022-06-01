@@ -15,6 +15,7 @@ function listeFiltreUtilisateurs() {
 		console.log(url);
 		req_AJAX.onreadystatechange = function () {
 			TraiteListeFiltreUtilisateurs(req_AJAX);
+			
 		}
 	}
 	else {
@@ -41,21 +42,21 @@ function TraiteListeFiltreUtilisateurs(requete) {
 
 function formulaireModification()   {
     var noL = document.getElementById('id_mail').value;
-    var req_AJAX// Objet qui sera crée
+    var req_AJAX2// Objet qui sera crée
     console.log(noL);
 	if (window.XMLHttpRequest) {	// Mozilla, Safari
-		req_AJAX = new XMLHttpRequest();
+		req_AJAX2 = new XMLHttpRequest();
 	}
-	if (req_AJAX) {
+	if (req_AJAX2) {
         // le navigateur permet AJAX
 		// on incrémente ou décrémente l'image
-		var url = "formulaireModication.php?choix="+noL;
-		req_AJAX.open("GET", url, true);
+		var url = "formulaireModification.php?noL="+noL;
+		req_AJAX2.open("GET", url, true);
 		//req_AJAX.setRequestHeader("Content-Type","application/x-www-form-urlencodesd");
-		req_AJAX.send();
+		req_AJAX2.send();
 		console.log(url);
-		req_AJAX.onreadystatechange = function () {
-			TraiteListeFiltreUtilisateurs(req_AJAX);
+		req_AJAX2.onreadystatechange = function () {
+			TraiteListeFiltreUtilisateurs(req_AJAX2);
 		}
 	}
 	else {

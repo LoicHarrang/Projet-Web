@@ -26,9 +26,11 @@ else if($_SESSION['statut']!='administrateur')
 }
 else
 {
+
     afficherMenuAdmin();
     contenue_modification();
     afficheFormulaireChoixUtilisateur();
+    var_dump($res,$_SESSION);
     /*
     if(isset($_POST['noL']))
     {
@@ -38,8 +40,9 @@ else
     if(isset($_POST['nom']) && isset($_POST['adr']) && isset($_POST['tel']))
     {
         modifierLycee($_SESSION['modif'],$_POST['nom'],$_POST['adr'],$_POST['tel']);
+
     }
-    echo "<p id='test'>e</p>";
+    echo "<p id='test'></p>";
 }
 ?>
 
