@@ -8,7 +8,11 @@ function listeFiltreUtilisateurs() {
         // le navigateur permet AJAX
 		// on incrémente ou décrémente l'image
 		var ville = document.getElementById("id_ville").value;
-		var url = "listeVilleparLycee.php?choix="+ville;
+		var noL = document.getElementById("id_noL").value;
+		var nom = document.getElementById("id_nom").value;
+		var adr = document.getElementById("id_adr").value;
+		var tel = document.getElementById("id_tel").value;
+		var url = "Ajax_Modification.php?ville="+ville+"&noL="+noL+"&nom="+nom+"&adr="+adr+"&tel="+tel;
 		req_AJAX.open("GET", url, true);
 		//req_AJAX.setRequestHeader("Content-Type","application/x-www-form-urlencodesd");
 		req_AJAX.send();

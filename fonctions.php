@@ -142,12 +142,13 @@ function modifierLycee($noL,$nom,$adresse,$tel){
     return $retour;
 }
 //*********************************************************************************************
-function listeLyceeParVille($No_ville){
+function listeLyceeParVille($noL){
     $retour=false;
             $madb = new PDO('sqlite:bdd/bdd.sqlite');
-            $requete = "SELECT * FROM lycee WHERE codepostal == $No_ville;" ;//	var_dump($requete); echo "<br/>";  
+            $noL = $madb->quote($noL);
+            $requete = "SELECT * FROM lycee WHERE noL = $noL;" ;//	var_dump($requete); echo "<br/>";
             $resultat = $madb->query($requete);
-            $tableau_assoc = $resultat->fetchAll(PDO::FETCH_ASSOC);//var_dump($tableau_assoc);echo "<br/>";   
+            $tableau_assoc = $resultat->fetchAll(PDO::FETCH_ASSOC);//var_dump($tableau_assoc);echo "<br/>";
             if (sizeof($tableau_assoc)!=0) $retour = $tableau_assoc;
     return $retour;
     }
