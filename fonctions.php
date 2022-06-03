@@ -71,13 +71,11 @@ function recupereInfos()
 
 function afficheTableauHTML($tab){
     echo '<table>';
-    // les entetes des colonnes qu'on lit dans le premier tableau par exemple
     echo '<tr>';
     foreach($tab[0] as $cle=>$valeur){
         echo "<th>$cle</th>";
     }
     echo "</tr>\n";
-    // le corps de la table
     foreach($tab as $ligne){
         echo '<tr>';
         foreach($ligne as $valeur)      {
@@ -89,19 +87,15 @@ function afficheTableauHTML($tab){
     echo '<hr/>';
 }
 //*******************************************************************************************
-function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){		/* on récupère directement le code de la ville qui a été transmis dans l'attribut value de la balise <option> du formulaire
-    Il n'est donc pas nécessaire de rechercher le code INSEE de la ville*/
+function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){
     $retour=0;
-    $madb = new PDO('sqlite:bdd/bdd.sqlite'); 	
-    // filtrer les paramètres
+    $madb = new PDO('sqlite:bdd/bdd.sqlite');
     $noL = $madb->quote($noL);		
     $nom = $madb->quote($nom);
     $adresse= $madb->quote($adresse);
     $codepostal = $madb->quote($codepostal);
     $telephone = $madb->quote($telephone);
 
-
-    //Recuperer la ville grace au code postal
     $ville = "SELECT ville FROM lycee where codepostal == $codepostal;";
     $query= $madb->query($ville);
     if($query)
@@ -110,8 +104,7 @@ function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){		/* on récupèr
         $ville = $res['ville'];
     }
     $ville = $madb->quote($ville);
-    //var_dump($ville,$noL);
-    // requête
+
     $requete ="INSERT INTO lycee VALUES ($noL,$nom,$adresse,$codepostal,$ville,$telephone);";
     $resultat =$madb->exec($requete);
     if ($resultat == false ) 
@@ -119,14 +112,12 @@ function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){		/* on récupèr
     else 
         $retour = $resultat;
     return $retour;
-
 }
 
 //*******************************************************************************************
 function modifierLycee($noL,$nom,$adresse,$tel){
     $retour=0;
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
-    // filtrer les paramètres
     $noL = $madb->quote($noL);
     $nom = $madb->quote($nom);
     $adresse = $madb->quote($adresse);
@@ -144,12 +135,12 @@ function modifierLycee($noL,$nom,$adresse,$tel){
 //*********************************************************************************************
 function listeLyceeParVille($noL){
     $retour=false;
-            $madb = new PDO('sqlite:bdd/bdd.sqlite');
-            $noL = $madb->quote($noL);
-            $requete = "SELECT * FROM lycee WHERE noL = $noL;" ;//	var_dump($requete); echo "<br/>";
-            $resultat = $madb->query($requete);
-            $tableau_assoc = $resultat->fetchAll(PDO::FETCH_ASSOC);//var_dump($tableau_assoc);echo "<br/>";
-            if (sizeof($tableau_assoc)!=0) $retour = $tableau_assoc;
+        $madb = new PDO('sqlite:bdd/bdd.sqlite');
+        $noL = $madb->quote($noL);
+        $requete = "SELECT * FROM lycee WHERE noL = $noL;" ;
+        $resultat = $madb->query($requete);
+        $tableau_assoc = $resultat->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($tableau_assoc)!=0) $retour = $tableau_assoc;
     return $retour;
     }
 ?>
