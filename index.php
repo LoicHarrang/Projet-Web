@@ -2,7 +2,6 @@
     session_start();
     include 'formulaires.php';
     include 'fonctions.php';
-    include 'contenue.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -68,7 +67,8 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
         </div>
     </div>
 </div>
-
-
 </body>
+<?php
+afficheFooter();
+?>
 </html>

@@ -320,4 +320,51 @@ function afficheFormulaireFiltre(){
               </button>
           </div>';
       }// fin afficheCarousel
+
+      function afficheFooter(){
+        echo '
+        <footer class="bg-light text-center text-lg-start ">
+          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-dark">Loic HARRANG et Glenn MORIN</a>
+          </div>
+        </footer>
+        ';
+      }
+
+      function afficheContenueInsertion(){
+      ?>
+
+        <div  class ="container my-5" id="accueil">
+
+            <div class="card offset-1 col-10 ">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="text-center card-title">
+                            <h2 class="h2 text-center mb-4 my-sm-4 ">Page d'Insertion</h2>
+                        </div>
+                        <div class="card-text ">
+                            <p class="text-center">
+                                <?php
+                                echo "<h5> Choisir l'utilisiateur à inserer</h5>";
+
+      }
+
+      function afficheContenueModification()
+      {
+          ?>
+                            <div  class ="container my-5" id="accueil">
+
+                                <div class="card offset-1 col-10 ">
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <div class="text-center card-title">
+                                                <!-- Heading -->
+                                                <h2 class="h2 text-center mb-4 my-sm-4 ">Page de modification</h2>
+                                            </div>
+                                            <div class="card-text ">
+                                                <p class="text-center">
+                                                    <?php
+                                                    echo "<h5> Choisir l'utilisiateur à modifier</h5>";
+      }
 ?>

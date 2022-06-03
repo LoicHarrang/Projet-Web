@@ -2,7 +2,6 @@
 <?php 
 	include 'fonctions.php';
 	include 'formulaires.php';
-    include 'contenue.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" >
@@ -30,7 +29,7 @@
 		<article>
 			<?php
 				if(!empty($_SESSION) && $_SESSION['statut']=='administrateur') {
-                    contenue_accueil_insertion();
+                    afficheContenueInsertion();
                     echo "<br>";
                     afficheFormulaireAjoutLycee();
                     if (!empty($_POST)) {
@@ -59,9 +58,8 @@
 			?>	
             
 		</article>
-		<footer>
-			<p>Pied de la page <?php echo $_SERVER['PHP_SELF']; ?> </p>
-			<a href="javascript:history.back()">Retour à la page précédente</a>
-		</footer>
 	</body>
+    <?php
+    afficheFooter();
+    ?>
 </html>

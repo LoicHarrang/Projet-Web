@@ -2,7 +2,6 @@
 session_start();
 include 'formulaires.php';
 include 'fonctions.php';
-include 'contenue.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -28,7 +27,7 @@ else
 {
 
     afficherMenuAdmin();
-    contenue_modification();
+    afficheContenueModification();
     afficheFormulaireChoixUtilisateur();
     /*
     if(isset($_POST['noL']))
@@ -47,4 +46,7 @@ else
 ?>
 
 </body>
+<?php
+afficheFooter();
+?>
 </html>
