@@ -31,29 +31,27 @@ function afficheFormulaireConnexion(){
 function afficherMenuAdmin()
 {
     ?>
-    <header>
-    <div class="container ">
-        <header class="d-flex justify-content-center py-3">
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link text-black" href="index.php"> Accueil</a></li>
-                <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur_ville"> Lister les lycées par ville</a></li>
-                <li class="nav-item"><a class="nav-link text-black" href="insertion.php?action=inserer_utilisateur"> Insérer un lycée</a></li>
-                <li class="nav-item"><a class="nav-link text-black" href="modification.php">Modifier un lycée</a></li>
-                <li class="nav-item"><a class="nav-link text-black" href="index.php?action=logout" title="Déconnexion">Se deconnecter</a></li>
-            </ul>
-        </header>
-    </div>
-        <?php
+        <nav class="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav  ">
+                    <li class="nav-item"><a class="nav-link" href="index.php"> Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link " href="index.php?action=liste_utilisateur_ville"> Lister les lycées par ville</a></li>
+                    <li class="nav-item"><a class="nav-link " href="insertion.php?action=inserer_utilisateur"> Insérer un lycée</a></li>
+                    <li class="nav-item"><a class="nav-link " href="modification.php">Modifier un lycée</a></li>
+                    <li class="nav-item"><a class="nav-link " href="index.php?action=logout" title="Déconnexion">Se deconnecter</a></li>
+                </ul>
+            </div>
+        </nav>
+    <?php
 }
 //******************************************************************************
 function afficherMenuUtilisateur()
 {
     ?>
-    <>
     <div class="container ">
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link text-black" href="index.php"> Lister les lycées</a></li>
+                <li class="nav-item"><a class="nav-link text-black" href="index.php"> Accueil</a></li>
                 <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur_ville"> Lister les lycées par ville</a></li>
                 <li class="nav-item"><a class="nav-link text-black" href="index.php?action=logout" title="Déconnexion">Se deconnecter</a></li>
             </ul>
@@ -314,7 +312,7 @@ function afficheFooter(){
         <footer class="bg-light text-center text-lg-start ">
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2022 Copyright:
-                <a class="text-dark">Loic HARRANG et Glenn MORIN</a>
+                <a class="text-dark">Loic HARRANG et Glen MORIN</a>
             </div>
         </footer>
     ';
