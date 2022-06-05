@@ -80,14 +80,18 @@ function afficheFormulaireChoixUtilisateur(){
 	?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
     <fieldset>
-        <select id="id_mail" name="noL" size="1" onchange="formulaireModification(this)">
-            <?php
+        <div class="form-group my-2 offset-4 col-4">
+            <label for="id_mail" class="form-label">Choisir un Lycée</label>
+            <select id="id_mail" class="form-select custom-select-lg " name="noL" size="1" onchange="formulaireModification(this)" required>
+            <option value="" selected disabled>------</option>
+                <?php
 					foreach ($lycees as $lycee)
                     {
                         echo '<option value='.$lycee['noL'].'> '.$lycee['nom'].'</option>';
                     }
 				?>
-        </select>
+            </select>
+        </div>
     </fieldset>
 </form>
 <?php
@@ -104,48 +108,49 @@ function afficheFormulaireAjoutLycee(){
         $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
 	?>
-    <form class="offset-4 col-4 was-validated" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <fieldset>
-            <div class="row mb-1">
-                <div class="form-group col-md-6">
-                    <label for="id_noL" class="form-label">noL : </label>
-                    <input type="text" class="form-control" name="noL" id="id_noL" placeholder="LYC_XX" required size="4"
-                        pattern='^LYC_[0-9]{1,4}' />
-                </div>
-                <div class="form-group col-6">
-                    <label for="id_nom" class="form-label">Nom : </label>
-                    <input type="text" class="form-control" name="nom" id="id_nom" placeholder="Nom" required />
-                </div>
+<form class="offset-4 col-4 was-validated" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <fieldset>
+        <div class="row mb-1">
+            <div class="form-group col-md-6">
+                <label for="id_noL" class="form-label">noL : </label>
+                <input type="text" class="form-control" name="noL" id="id_noL" placeholder="LYC_XX" required size="4"
+                    pattern='^LYC_[0-9]{1,4}' />
             </div>
-            <div class="form-group mb-1">
-                <label for="id_adresse" class="form-label">Adresse : </label> <input type="text" class="form-control" name="adr" required
-                    id="id_adr" size="10" placeholder="adresse" />
+            <div class="form-group col-6">
+                <label for="id_nom" class="form-label">Nom : </label>
+                <input type="text" class="form-control" name="nom" id="id_nom" placeholder="Nom" required />
             </div>
-            <div class="form-group mb-1">
-                <label for="id_tel" class="form-label">Téléphone : </label> <input type="tel" class="form-control" class="form-control"
-                    name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10" pattern='^0[0-9]{9}' />
-            </div>
-            <div class="form-group mb-1 ">
-                <label  for="id_ville" class="form-label">Ville : </label>
+        </div>
+        <div class="form-group mb-1">
+            <label for="id_adresse" class="form-label">Adresse : </label> <input type="text" class="form-control"
+                name="adr" required id="id_adr" size="10" placeholder="adresse" />
+        </div>
+        <div class="form-group mb-1">
+            <label for="id_tel" class="form-label">Téléphone : </label> <input type="tel" class="form-control"
+                class="form-control" name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10"
+                pattern='^0[0-9]{9}' />
+        </div>
+        <div class="form-group mb-1 ">
+            <label for="id_ville" class="form-label">Ville : </label>
 
-                <select id="id_ville" name="ville_ly" class="form-select custom-select-lg " size="1" required >
-                    <option value="" selected disabled>------</option>
-                    <?php // on se sert de value directement pour l'insertion					
+            <select id="id_ville" name="ville_ly" class="form-select custom-select-lg " size="1" required>
+                <option value="" selected disabled>------</option>
+                <?php // on se sert de value directement pour l'insertion					
                             foreach($lycees as $lycee){					
                                 echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
                             }					
                         ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="id_captcha" class="form-label">Captcha : </label>
-                <img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha"
-                    style="cursor:pointer;"></br>
-                <input type="text" class="form-control" id="id_captcha" name="captcha" required /></br>
-            </div>
-            <input type="submit" value="Insérer" />
-        </fieldset>
-    </form>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="id_captcha" class="form-label">Captcha : </label>
+            <img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha"
+                style="cursor:pointer;"></br>
+            <input type="text" class="form-control" id="id_captcha" name="captcha" required /></br>
+        </div>
+        <input type="submit" value="Insérer" />
+    </fieldset>
+</form>
 <?php
     echo "<br/>";
 	}// fin afficheFormulaireAjoutLycee
@@ -162,23 +167,44 @@ function afficheFormulaireModification($noL){
         $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
-<div>
+<div class="form offset-4 col-4">
     <fieldset>
-        <?php
-                echo '<label for="id_tel">noL : </label> <input type="text" name="noL" id="id_noL" value="'.$lycees[0]['noL'].'" disabled size="5" /><br />';
-                echo '<label for="id_nom">Nom : </label> <input type="text" name="nom" id="id_nom" value="'.$lycees[0]['nom'].'" required size="20" /><br />';
-                echo '<label for="id_adresse">Adresse : </label> <input type="text" name="adr" id="id_adr" value="'.$lycees[0]['adresse'].'" size="10" /><br />';
-                echo '<label for="id_tel">Téléphone : </label> <input type="tel" name="tel" id="id_tel" value="'.$lycees[0]['telephone'].'" required size="10" /><br />';
-            ?>
-        <label for="id_ville">Ville : </label>
-        <select id="id_ville" name="ville_ly" size="1">
+        <div class="row mb-1">
             <?php
-                foreach($lycees as $lycee){
-                    echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
-                }
-                ?>
-        </select>
-        <button onclick='return listeFiltreUtilisateurs()'> Modifier </button>
+                echo '
+                    <div class="form-group mb-1>
+                        <label for="id_noL" class="form-label">noL : </label>
+                        <input type="text" class="form-control" name="noL" id="id_noL" value="'.$lycees[0]['noL'].'" disabled size="5" />
+                    </div>
+                    <div class="form-group mb-1>
+                        <label for="id_nom" class="form-label">Nom : </label>
+                        <input type="text" class="form-control" name="nom" id="id_nom" value="'.$lycees[0]['nom'].'" required size="20" />               
+                    </div>
+                </div>';
+                echo '
+                <div class="form-group mb-1">
+                    <label for="id_adresse" class="form-label">Adresse : </label> 
+                    <input class="form-control" type="text" name="adr" id="id_adr" value="'.$lycees[0]['adresse'].'" size="10"  required />
+                </div>';
+                echo '        
+                <div class="form-group mb-1">
+                    <label for="id_tel" class="form-label">Téléphone : </label><input type="tel" name="tel" id="id_tel" value="'.$lycees[0]['telephone'].'" class="form-control"
+                    class="form-control" name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10"
+                    pattern="^0[0-9]{9}" />
+                </div>';
+            ?>
+            <div class="form-group mb-2 ">
+                <label for="id_ville" class="form-label">Ville : </label>
+
+                <select id="id_ville" name="ville_ly" class="form-select custom-select-lg " size="1" required>
+                    <?php // on se sert de value directement pour l'insertion					
+                            foreach($lycees as $lycee){					
+                                echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
+                            }					
+                        ?>
+                </select>
+            </div>
+            <button onclick='return listeFiltreUtilisateurs()'> Modifier </button>
     </fieldset>
 </div>
 <?php
