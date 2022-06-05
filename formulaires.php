@@ -104,48 +104,48 @@ function afficheFormulaireAjoutLycee(){
         $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
 	?>
-<form class="offset-4 col-4" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <fieldset>
-        <div class="form-row">
-            <div class="form-group col-md-5">
-                <label for="id_noL">noL : </label>
-                <input type="text" class="form-control" name="noL" id="id_noL" placeholder="LYC_XX" required size="4"
-                    pattern='^LYC_[0-9]{1,4}' />
+    <form class="offset-4 col-4 was-validated" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <fieldset>
+            <div class="row mb-1">
+                <div class="form-group col-md-6">
+                    <label for="id_noL" class="form-label">noL : </label>
+                    <input type="text" class="form-control" name="noL" id="id_noL" placeholder="LYC_XX" required size="4"
+                        pattern='^LYC_[0-9]{1,4}' />
+                </div>
+                <div class="form-group col-6">
+                    <label for="id_nom" class="form-label">Nom : </label>
+                    <input type="text" class="form-control" name="nom" id="id_nom" placeholder="Nom" required />
+                </div>
             </div>
-            <div class="form-group col-5">
-                <label for="id_nom">Nom : </label> 
-                <input type="text" class="form-control" name="nom" id="id_nom" placeholder="Nom"  />
+            <div class="form-group mb-1">
+                <label for="id_adresse" class="form-label">Adresse : </label> <input type="text" class="form-control" name="adr" required
+                    id="id_adr" size="10" placeholder="adresse" />
             </div>
-        </div>
-        <div class="form-group">
-            <label for="id_adresse">Adresse : </label> <input type="text" class="form-control" name="adr" required
-                id="id_adr" size="10" placeholder="adresse" />
-        </div>
-        <div class="form-group">
-            <label for="id_tel">Téléphone : </label> <input type="tel" class="form-control" class="form-control"
-                name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10" pattern='^0[0-9]{9}' />
-        </div>
-        <div class="form-group">
-            <label for="id_ville">Ville : </label>
+            <div class="form-group mb-1">
+                <label for="id_tel" class="form-label">Téléphone : </label> <input type="tel" class="form-control" class="form-control"
+                    name="tel" id="id_tel" placeholder="06 XX XX XX XX" required size="10" pattern='^0[0-9]{9}' />
+            </div>
+            <div class="form-group mb-1 ">
+                <label  for="id_ville" class="form-label">Ville : </label>
 
-            <select id="id_ville" name="ville_ly" class="form-control" size="1">
-                <option value="---" selected disabled>------</option>
-                <?php // on se sert de value directement pour l'insertion					
-						foreach($lycees as $lycee){					
-							echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
-						}					
-					?>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="id_captcha">Captcha : </label>
-            <img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha"
-                style="cursor:pointer;"></br>
-            <input type="text" class="form-control" id="id_captcha" name="captcha" /></br>
-        </div>
-        <input type="submit" value="Insérer" />
-    </fieldset>
-</form>
+                <select id="id_ville" name="ville_ly" class="form-select custom-select-lg " size="1" required >
+                    <option value="" selected disabled>------</option>
+                    <?php // on se sert de value directement pour l'insertion					
+                            foreach($lycees as $lycee){					
+                                echo '<option value="'.$lycee['codepostal'].'">'.$lycee["codepostal"].' '.$lycee["ville"].'</option>';
+                            }					
+                        ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_captcha" class="form-label">Captcha : </label>
+                <img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha"
+                    style="cursor:pointer;"></br>
+                <input type="text" class="form-control" id="id_captcha" name="captcha" required /></br>
+            </div>
+            <input type="submit" value="Insérer" />
+        </fieldset>
+    </form>
 <?php
     echo "<br/>";
 	}// fin afficheFormulaireAjoutLycee
