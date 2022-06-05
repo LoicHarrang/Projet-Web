@@ -261,17 +261,20 @@ function afficheFormulaireFiltre(){
         $villes = $query->fetchAll(PDO::FETCH_ASSOC);}
 
     ?>
+    
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <fieldset>
-        <label for="id_ville">Ville :</label>
-        <select id="id_ville" name="ville" size="1">
+    <div class="form-group  offset-4 col-4">
+        <label for="id_ville" class="form-label">Ville :</label>
+        <select id="id_ville" class="form-select custom-select-lg " name="ville"  required size="1">
+        <option value="" selected disabled>------</option>
             <?php
                     foreach ($villes as $ville)
                     {
                         echo '<option value='.$ville['codepostal'].'> '.$ville['codepostal'].' '.$ville['ville'].' </option>';
                     }
                     ?>
-        </select>
+        </select></br>
         <input type="submit" value="Rechercher Lycée par Ville" />
     </fieldset>
 </form>
