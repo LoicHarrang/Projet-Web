@@ -21,7 +21,7 @@ echo "<script type=\"text/javascript\">\n"
 		. "</script>\n";
 
 }
-
+//*******************************************************************************************
 function verifierCompte($mail,$pass)
 {
     $retour = false;
@@ -38,7 +38,7 @@ function verifierCompte($mail,$pass)
     }
     return $retour;
 }
-
+//*******************************************************************************************
 function isAdmin($mail)
 {
     $retour = false ;
@@ -55,7 +55,7 @@ function isAdmin($mail)
 
     return $retour;
 }
-
+//*******************************************************************************************
 function recupereInfos()
 {
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
@@ -68,12 +68,12 @@ function recupereInfos()
 
     return $resultat;
 }
-
+//*******************************************************************************************
 function afficheTableauHTML($tab){
-    echo '<table>';
+    echo '<table class"table">';
     echo '<tr>';
     foreach($tab[0] as $cle=>$valeur){
-        echo "<th>$cle</th>";
+        echo "<th scope='col'>$cle</th>";
     }
     echo "</tr>\n";
     foreach($tab as $ligne){

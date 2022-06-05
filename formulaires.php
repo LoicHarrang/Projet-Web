@@ -165,7 +165,7 @@ function afficheListeLycee(){
         $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
-    <table class="table">
+    <table class="table table-bordered table-striped shadow p-3 mb-5 bg-white rounded">
         <thead>
             <tr>
                 <th scope="col">Nom</th>
@@ -262,7 +262,7 @@ function afficheListeLyceeFiltre($cp){
     echo "<br/>";
 }// fin afficheListeLyceeFiltre
 
-      //*******************************************************************************************
+//*******************************************************************************************
 function afficheCarousel(){
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
     $requete = "SELECT DISTINCT image FROM bac;";
@@ -273,7 +273,7 @@ function afficheCarousel(){
     }
 
     echo
-        '<h4><br> Voici les différents BAC proposé dans votre région !<br></h4>
+        '<h4 class="mb-5"><br> Voici les différents BAC proposé dans votre région !<br></h4>
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -306,7 +306,7 @@ function afficheCarousel(){
             </div>
         ';
 }// fin afficheCarousel
-
+//*******************************************************************************************
 function afficheFooter(){
     echo '
         <footer class="bg-light text-center text-lg-start ">
@@ -317,7 +317,7 @@ function afficheFooter(){
         </footer>
     ';
 }
-
+//*******************************************************************************************
 function afficheContenueInsertion(){
     ?>
         <div  class ="container my-5" id="accueil">
@@ -333,7 +333,7 @@ function afficheContenueInsertion(){
                                 echo "<h5> Choisir l'utilisiateur à inserer</h5>";
 
 }
-
+//*******************************************************************************************
 function afficheContenueModification()
 {
     ?>

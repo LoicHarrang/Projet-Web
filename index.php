@@ -47,13 +47,13 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
                             //Texte de bienvenu
                             echo "<h3> Bienvenue ".$_SESSION["login"]."</br> Vous êtes un ".$_SESSION["statut"]."</h3>";
                             afficheCarousel();
-                            echo '<h4><br> Voici la liste des lycées de votre région<br></h4>';
+                            echo '<h4 class="mt-5"><br> Voici la liste des lycées de votre région<br></h4>';
                             afficheListeLycee();
                         }
 
                         if(!empty($_SESSION) && isset($_SESSION['statut'])   && !isset($_POST['ville']) && isset($_GET['action']) && $_GET['action'] == 'liste_utilisateur_ville' )
                         {
-                            echo "<h3> Bienvenue ".$_SESSION["login"]."</br> Vous êtes un ".$_SESSION["statut"]."</h3>";
+                            echo "<h3 class='mt-5'> Bienvenue ".$_SESSION["login"]."</br> Vous êtes un ".$_SESSION["statut"]."</h3>";
                             afficheFormulaireFiltre();
                         }
 
