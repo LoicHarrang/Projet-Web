@@ -13,9 +13,9 @@
 </head>
 
 <body class="container">
-    
+
     <!-- Menu -->
-        <?php
+    <?php
 				if(empty($_SESSION)) {		
 					echo "<p>Vous n'êtes pas connectés ou pas en admin</p>";
 					redirect("connexion.php",1);				
@@ -27,34 +27,31 @@
                     
 				}
 			?>
-    
+
     <article>
         <?php
 				if(!empty($_SESSION) && $_SESSION['statut']=='administrateur') {
                     ?>
-                    <div class="container my-5" id="accueil">
-                        <div class="card offset-1 col-10 ">
-                            <div class="card-body">
-                                <div class="container">
-                                    <div class="text-center card-title">
-                                        <h2 class="h2 text-center mb-4 my-sm-4 ">Page d'Insertion</h2>
-                                    </div>
-                                    <div class="card-text ">
-                                        <p class="text-center">
-                                            <?php
-                                            
-                                echo "<h5> Choisir l'utilisiateur à inserer</h5>";
-                                echo "<br>";
-
-                                afficheFormulaireAjoutLycee();
+        <div class="container my-5" id="accueil">
+            <div class="card offset-1 col-10 ">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="text-center card-title">
+                            <h2 class="h2 text-center mb-4 my-sm-4 ">Page d'Insertion</br></h2>
+                            <h5> Choisir l'utilisiateur à inserer</h5></br>
+                        </div>
+                        <div class="card-text ">
+                            <p class="text-center">
+                                <?php
+                    
+                                
                                 if (!empty($_POST)) {
-                                    if (isset($_POST['captcha'])) {
                                         if ($_POST['captcha'] == $_SESSION['code']) {
                                             //Si le captcha est bon
 
                                             //Fonction ajoutant un Lycée
                                             $res = ajoutLycee($_POST['noL'], $_POST['nom'], $_POST['adr'], $_POST['ville_ly'], $_POST['tel']);
-                                            echo "<p class='text-center'>Code correct</p>";
+
 
                                             if ($res == 1) {
                                                 echo '<h4 class="text-center"> Le lycée ' . $_POST['nom'] . ' à correctement été aouté à la base</h4>';
@@ -68,16 +65,17 @@
                                             echo "<p class='text-center'>Code incorrect</p>";
                                         }
                                     }
-                                }
+                                
+                                afficheFormulaireAjoutLycee();
                             }
                         ?>
-                                        </p>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            </p>
+                            </ul>
                         </div>
-        </article>
+                    </div>
+                </div>
+            </div>
+    </article>
 </body>
 <?php
     afficheFooter();
