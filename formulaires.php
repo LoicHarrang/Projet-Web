@@ -34,11 +34,11 @@ function afficheFormulaireConnexion(){
 function afficherMenuAdmin()
 {
     ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
+<nav class="navbar navbar-expand navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
     <div class="collapse navbar-collapse justify-content-center">
         <ul class="navbar-nav  ">
             <li class="nav-item"><a class="nav-link" href="index.php"> Accueil</a></li>
-            <li class="nav-item"><a class="nav-link " href="index.php?action=liste_utilisateur_ville"> Lister les lycées
+            <li class="nav-item"><a class="nav-link" href="index.php?action=liste_utilisateur_ville"> Lister les lycées
                     par ville</a></li>
             <li class="nav-item"><a class="nav-link " href="insertion.php?action=inserer_utilisateur"> Insérer un
                     lycée</a></li>

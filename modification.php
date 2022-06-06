@@ -13,7 +13,7 @@ include 'fonctions.php';
 
 
 </head>
-<body class="text-center">
+<body class="container">
 <?php
 if(empty($_SESSION))
 {
@@ -43,8 +43,15 @@ else
     }
     echo "<p id='test'></p>";
 }
-?>
 
+?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
 </body>
 <?php
 afficheFooter();
