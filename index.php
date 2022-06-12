@@ -43,6 +43,8 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
                     <div class="text-center card-title">
                         <!-- Heading -->
                         <h2 class="h2 text-center mb-4 my-sm-4 ">Page d'accueil des Lycées de Bretagne</h2>
+                        <h3> Bienvenue <?php echo $_SESSION["login"] ?></br> Vous êtes un <?php echo $_SESSION["statut"] ?></h3>
+                            
                     </div>
                     <div class="card-text ">
                         <p class="text-center">
@@ -51,7 +53,6 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
                         if(!empty($_SESSION) && isset($_SESSION['statut']) && !isset($_GET['action']) && !isset($_POST['ville']))
                         {
                             //Texte de bienvenu
-                            echo "<h3> Bienvenue ".$_SESSION["login"]."</br> Vous êtes un ".$_SESSION["statut"]."</h3>";
                             afficheCarousel();
                             echo '<h4 class="mt-5"><br> Voici la liste des lycées de votre région<br></h4>';
                             afficheListeLycee();

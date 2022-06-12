@@ -1,4 +1,4 @@
-<script src="Lycee.js" type="text/javascript"></script>
+<script src="js/Lycee.js" type="text/javascript"></script>
 <?php
 //******************************************************************************
 function afficheMessageAccueil()  {
@@ -376,37 +376,6 @@ function afficheFooter(){
         </footer>
     ';
 }
-//*******************************************************************************************
-function afficheContenueInsertion(){
-    ?>
-<div class="container my-5" id="accueil">
-    <div class="card offset-1 col-10 ">
-        <div class="card-body">
-            <div class="container">
-                <div class="text-center card-title">
-                    <h2 class="h2 text-center mb-4 my-sm-4 ">Page d'Insertion</h2>
-                </div>
-                <div class="card-text ">
-                    <p class="text-center">
-                        <?php
-                                echo "<h5> Choisir l'utilisiateur à inserer</h5>";
 
-}
 //*******************************************************************************************
-function afficheContenueModification()
-{
-    ?>
-                    <div class="container my-5" id="accueil">
-                        <div class="card offset-1 col-10 ">
-                            <div class="card-body">
-                                <div class="container">
-                                    <div class="text-center card-title">
-                                        <h2 class="h2 text-center mb-4 my-sm-4 ">Page de modification</h2>
-                                    </div>
-                                    <div class="card-text ">
-                                        <p class="text-center">
-                                            <?php
-                                echo "<h5> Choisir l'utilisiateur à modifier</h5>";
-
-    }
 ?>
