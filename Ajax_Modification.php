@@ -4,9 +4,15 @@ include 'fonctions.php';
 if (!empty($_GET) && isset($_GET["noL"]))   {
     modifierLycee($_GET['noL'],$_GET['nom'],$_GET['adr'],$_GET['tel']);
     $tab=listeLyceeParVille($_GET["noL"]);
-    if ($tab) afficheTableauHTML($tab);
+    if ($tab) {
+    echo '<h4 class="text-center"> Le lycée ' . $_GET['nom'] . ' à correctement été modifié à la base</h4>';
+    afficheTableauHTML($tab);
+    }
+    else{
+        echo"<h4 class='text-center'>erreure dans l'insertion";
+    }
 }
 else{
-    echo "aucun msg";
+    echo "<h4 class='text-center'>erreure dans l'insertion";
 }
 ?>

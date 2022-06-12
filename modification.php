@@ -52,11 +52,11 @@ else
                                 afficheFormulaireChoixLycee();
                                     if(isset($_POST['nom']) && isset($_POST['adr']) && isset($_POST['tel']))
                                     {
-                                        var_dump(1);
                                         modifierLycee($_SESSION['modif'],$_POST['nom'],$_POST['adr'],$_POST['tel']);
 
                                     }
-                                    echo "<p id='test'></p>";
+                                    echo "
+                                    <p  id='test'></p>";
                                     ?>
                         </p>
                     </div>
