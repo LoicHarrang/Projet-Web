@@ -33,7 +33,7 @@
 				if(!empty($_SESSION) && $_SESSION['statut']=='administrateur') {
                     ?>
         <div class="container my-5" id="accueil">
-            <div class="card offset-1 col-10 ">
+            <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded">
                 <div class="card-body">
                     <div class="container">
                         <div class="text-center card-title">
