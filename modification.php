@@ -28,21 +28,28 @@ else if($_SESSION['statut']!='administrateur')
 }
 else
 {
-
+    ?>
+    <nav class="navbar navbar-expand navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
+        <?php
     afficherMenuAdmin();
     ?>
+    </nav>
+    <?php
+    ?>
+    <header>
+        <h2 class="h2 mb-4 my-sm-4 text-center">Page de modification des Lycées de Bretagne</h2>
+        <h3 class="text-center"> Bienvenue <?php echo $_SESSION["login"] ?></br> Vous êtes un
+            <?php echo $_SESSION["statut"] ?></h3>
+    </header>
     <div class="container my-5" id="accueil">
         <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded">
             <div class="card-body">
                 <div class="container">
-                    <div class="text-center card-title">
-                        <h2 class="h2 text-center mb-4 my-sm-4 ">Page de modification</h2>
-                    </div>
                     <div class="card-text ">
                         <p class="text-center">
                             <?php
-                                echo "<h5> Choisir l'utilisiateur à modifier</h5>";
-                                afficheFormulaireChoixUtilisateur();
+                                
+                                afficheFormulaireChoixLycee();
                                     if(isset($_POST['nom']) && isset($_POST['adr']) && isset($_POST['tel']))
                                     {
                                         var_dump(1);
@@ -63,10 +70,12 @@ else
 }
 
 ?>
-
+    <footer>
+        <?php
+         afficheFooter();
+        ?>
+    </footer>
 </body>
-<?php
-afficheFooter();
-?>
+
 
 </html>

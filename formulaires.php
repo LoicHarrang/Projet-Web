@@ -34,7 +34,6 @@ function afficheFormulaireConnexion(){
 function afficherMenuAdmin()
 {
     ?>
-<nav class="navbar navbar-expand navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
     <div class="collapse navbar-collapse justify-content-center">
         <ul class="navbar-nav  ">
             <li class="nav-item"><a class="nav-link" href="index.php"> Accueil</a></li>
@@ -47,7 +46,7 @@ function afficherMenuAdmin()
                     deconnecter</a></li>
         </ul>
     </div>
-</nav>
+
 <?php
 }
 //******************************************************************************
@@ -68,7 +67,7 @@ function afficherMenuUtilisateur()
 <?php
 }
 //******************************************************************************
-function afficheFormulaireChoixUtilisateur(){
+function afficheFormulaireChoixLycee(){
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
     $requete = "SELECT DISTINCT noL,nom FROM lycee;";
     $query = $madb->query($requete);
@@ -281,6 +280,7 @@ function afficheFormulaireFiltre(){
 <?php
           echo "<br/>";
 }// fin afficheFormulaireFiltre
+//*******************************************************************************************
 
 function afficheListeLyceeFiltre($cp){
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
@@ -331,8 +331,7 @@ function afficheCarousel(){
         $image = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    echo
-        '<h4 class="mb-5"><br> Voici les différents BAC proposé dans votre région !<br></h4>
+    echo '
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -378,4 +377,5 @@ function afficheFooter(){
 }
 
 //*******************************************************************************************
+
 ?>

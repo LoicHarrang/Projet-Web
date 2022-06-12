@@ -17,7 +17,8 @@
 </head>
 
 <body class="container">
-    <?php
+    <nav class="navbar navbar-expand navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
+        <?php
 //Si aucune session redirection vers page de connection
 if (empty($_SESSION)) {
     redirect('connexion.php', 1);
@@ -34,22 +35,28 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
     redirect("connexion.php", 1);
 }
 ?>
-<article class='mb-5'>
-    <div class="container mt-5" id="accueil">
+    </nav>
+    <header>
+        <h2 class="h2 mb-4 my-sm-4 text-center">Page d'accueil des Lycées de Bretagne</h2>
+        <h3 class="text-center"> Bienvenue <?php echo $_SESSION["login"] ?></br> Vous êtes un
+            <?php echo $_SESSION["statut"] ?></h3>
+    </header>
+    <article class='mb-5'>
+        <div class="container mt-5 " id="accueil">
 
-        <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded ">
-            <div class="card-body">
-                <div class="container">
-                    <div class="text-center card-title">
-                        <!-- Heading -->
-                        <h2 class="h2 text-center mb-4 my-sm-4 ">Page d'accueil des Lycées de Bretagne</h2>
-                        <h3> Bienvenue <?php echo $_SESSION["login"] ?></br> Vous êtes un <?php echo $_SESSION["statut"] ?></h3>
-                            
-                    </div>
-                    <div class="card-text ">
-                        <p class="text-center">
+            <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded ">
+                <div class="card-body">
+                    <div class="container">
+                        <div class=" card-title">
+                            <!-- Heading -->
+                            <h4 class="mb-5 text-center"><br> Voici les différents BAC proposé dans votre région !<br>
+                            </h4>
 
-                            <?php
+                        </div>
+                        <div class="card-text ">
+                            <p class="text-center">
+
+                                <?php
                         if(!empty($_SESSION) && isset($_SESSION['statut']) && !isset($_GET['action']) && !isset($_POST['ville']))
                         {
                             //Texte de bienvenu
@@ -60,24 +67,25 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
 
                         if(!empty($_SESSION) && isset($_SESSION['statut'])   && !isset($_POST['ville']) && isset($_GET['action']) && $_GET['action'] == 'liste_utilisateur_ville' )
                         {
-                            echo "<h3 class='mt-5'> Bienvenue ".$_SESSION["login"]."</br> Vous êtes un ".$_SESSION["statut"]."</h3>";
                             afficheFormulaireFiltre();
                         }
 
                         if(isset($_POST['ville']))
                             afficheListeLyceeFiltre($_POST['ville']);
                         ?>
-                            <br />
-                        </p>
+                                <br />
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </article>
+    <footer>
+        <?php
+        afficheFooter();
+        ?>
+    </footer>
 </body>
-<?php
-afficheFooter();
-?>
 
 </html>

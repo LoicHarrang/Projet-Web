@@ -23,21 +23,29 @@
                 if(($_SESSION["statut"]!="administrateur" )) redirect("index.php",1);				
 
 				else {
+                    ?>
+    <nav class="navbar navbar-expand navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
+        <?php
 					afficherMenuAdmin();
-                    
+                    ?>
+    </nav>
+    <?php
 				}
 			?>
-
+    <header>
+        <h2 class="h2 mb-4 my-sm-4 text-center">Page d'Insertion des Lycées de Bretagne</h2>
+        <h3 class="text-center"> Bienvenue <?php echo $_SESSION["login"] ?></br> Vous êtes un
+            <?php echo $_SESSION["statut"] ?></h3>
+    </header>
     <article>
         <?php
 				if(!empty($_SESSION) && $_SESSION['statut']=='administrateur') {
                     ?>
         <div class="container my-5" id="accueil">
-            <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded">
+            <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded ">
                 <div class="card-body">
                     <div class="container">
                         <div class="text-center card-title">
-                            <h2 class="h2 text-center mb-4 my-sm-4 ">Page d'Insertion</br></h2>
                             <h5> Choisir l'utilisiateur à inserer</h5></br>
                         </div>
                         <div class="card-text ">
@@ -76,9 +84,10 @@
                 </div>
             </div>
     </article>
-</body>
-<?php
+    <footer>
+     <?php
     afficheFooter();
     ?>
-
+    </footer>
+</body>
 </html>
