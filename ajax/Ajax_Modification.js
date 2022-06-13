@@ -34,7 +34,6 @@ function TraiteListeFiltreUtilisateurs(requete) {
 		var status = requete.status;
 
 		if (status == 200) {
-			console.log(data);
 			document.getElementById("test").innerHTML = requete.responseText;
 		}
 		else {
