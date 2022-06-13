@@ -15,8 +15,9 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
 </head>
-
+<!-- Body -->
 <body class="container">
+    <!-- Nav -->
     <nav class="navbar navbar-expand navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
         <?php
 //Si aucune session redirection vers page de connection
@@ -38,6 +39,7 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
 }
 ?>
     </nav>
+    <!-- Header -->
     <header>
         <h2 class="h2 mb-4 my-sm-4 text-center">Page d'accueil des Lycées de Bretagne</h2>
         <h3 class="text-center"> Bienvenue <?php echo $_SESSION["login"] ?></br> Vous êtes un
@@ -45,8 +47,8 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
     </header>
     <article class='mb-5'>
         <div class="container mt-5 " id="accueil">
-
-            <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded ">
+            <!-- Boostrap / card avec ombre sur les bords  -->
+            <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded "> 
                 <div class="card-body">
                     <div class="container">
                         <div class=" card-title">
@@ -59,21 +61,24 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
                             <p class="text-center">
 
                                 <?php
+                        // Page d'accueil
                         if(!empty($_SESSION) && isset($_SESSION['statut']) && !isset($_GET['action']) && !isset($_POST['ville']))
                         {
                             //Texte de bienvenu
                             afficheCarousel();
                             echo '<h4 class="mt-5"><br> Voici la liste des lycées de votre région<br></h4>';
+                            //TOut les lycées
                             afficheListeLycee();
                         }
-
-                        if(!empty($_SESSION) && isset($_SESSION['statut'])   && !isset($_POST['ville']) && isset($_GET['action']) && $_GET['action'] == 'liste_utilisateur_ville' )
+                        //Page listre utilisateur lycee filtre
+                        if(!empty($_SESSION) && isset($_SESSION['statut'])   && !isset($_POST['ville']) && isset($_GET['action']) && $_GET['action'] == 'liste_lycee_ville' )
                         {
-                            
+                            //Formulaire affichant le choix des différentes villes
                             afficheFormulaireFiltre();
                         }
-
+                        //Page listre utilisateur lycee filtre apres le formulaire afficheFormulaireFIltre
                         if(isset($_POST['ville']))
+                        //Affiche le tableau des lyée filtre
                             afficheListeLyceeFiltre($_POST['ville']);
                         ?>
                                 <br />
@@ -84,6 +89,7 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
             </div>
         </div>
     </article>
+    <!-- Footer -->
     <footer>
         <?php
         afficheFooter();

@@ -37,9 +37,9 @@ function afficherMenuAdmin()
 <div class="collapse navbar-collapse justify-content-center">
     <ul class="navbar-nav  ">
         <li class="nav-item"><a class="nav-link" href="index.php"> Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.php?action=liste_utilisateur_ville"> Lister les lycées
+        <li class="nav-item"><a class="nav-link" href="index.php?action=liste_lycee_ville"> Lister les lycées
                 par ville</a></li>
-        <li class="nav-item"><a class="nav-link " href="insertion.php?action=inserer_utilisateur"> Insérer un
+        <li class="nav-item"><a class="nav-link " href="insertion.php"> Insérer un
                 lycée</a></li>
         <li class="nav-item"><a class="nav-link " href="modification.php">Modifier un lycée</a></li>
         <li class="nav-item"><a class="nav-link " href="index.php?action=logout" title="Déconnexion">Se
@@ -57,7 +57,7 @@ function afficherMenuUtilisateur()
 <div class="collapse navbar-collapse justify-content-center">
     <ul class="navbar-nav  ">
         <li class="nav-item"><a class="nav-link" href="index.php"> Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.php?action=liste_utilisateur_ville"> Lister les lycées
+        <li class="nav-item"><a class="nav-link" href="index.php?action=liste_lycee_ville"> Lister les lycées
                 par ville</a></li>
         <li class="nav-item"><a class="nav-link " href="index.php?action=logout" title="Déconnexion">Se
                 deconnecter</a></li>
