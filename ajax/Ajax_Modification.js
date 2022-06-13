@@ -34,12 +34,11 @@ function TraiteListeFiltreUtilisateurs(requete) {
 		var status = requete.status;
 
 		if (status == 200) {
-			data = document.getElementById("test").innerHTML = "c'est bon";
 			console.log(data);
 			document.getElementById("test").innerHTML = requete.responseText;
 		}
 		else {
-			document.getElementById("test").innerHTML = "la requete a echoué";
+			console.log("la requete a echoué");
 		}
 	}
 }
