@@ -16,19 +16,27 @@ include 'fonctions.php';
 
 </head>
 
+<!-- Body -->
 <body class="container">
     <?php
+    //Si l'utilisateur n'est pas connecté on e redirige vers la page connexionphp
 if(empty($_SESSION))
 {
     redirect('connexion.php',2);
 }
+// si l'utilisateur est connecté
+
+//Si l'utilisateur n'est pas admin on le redirige
 else if($_SESSION['statut']!='administrateur')
 {
     redirect('index.php',2);
 }
+//Sinon il a accés a la pgae modification
 else
 {
     ?>
+
+    <!-- Nav -->
     <nav class="navbar navbar-expand navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
         <?php
     afficherMenuAdmin();
@@ -36,6 +44,7 @@ else
     </nav>
     <?php
     ?>
+    <!-- Header -->
     <header>
         <h2 class="h2 mb-4 my-sm-4 text-center">Page de modification des Lycées de Bretagne</h2>
         <h3 class="text-center"> Bienvenue <?php echo $_SESSION["login"] ?></br> Vous êtes un
@@ -58,12 +67,13 @@ else
             </div>
         </div>
     </div>
+    <!-- Article -->
     </article>
     <?php
     
-}
 
 ?>
+<!-- Footer -->
     <footer>
         <?php
          afficheFooter();
@@ -73,3 +83,6 @@ else
 
 
 </html>
+<?php 
+}
+?>

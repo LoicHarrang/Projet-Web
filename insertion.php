@@ -14,31 +14,41 @@
 
 <body class="container">
 
-    <!-- Menu -->
+
     <?php
+    //Si pas connecter
 				if(empty($_SESSION)) {		
 					echo "<p>Vous n'êtes pas connectés ou pas en admin</p>";
 					redirect("connexion.php",1);				
 				}
-                if(($_SESSION["statut"]!="administrateur" )) redirect("index.php",1);				
-
+                //Si pas administrateur
+                else if(($_SESSION["statut"]!="administrateur" )) redirect("index.php",1);				
+                //Sinon on affiche la page Insertion
 				else {
+                    
                     ?>
+    <!-- Nav -->
     <nav class="navbar navbar-expand navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
         <?php
-					afficherMenuAdmin();
-                    ?>
+			afficherMenuAdmin();
+        ?>
     </nav>
     <?php
-				}
-			?>
+		
+	?>
+
+    <!-- Header -->
+    <!-- INformation utilisateur -->
     <header>
         <h2 class="h2 mb-4 my-sm-4 text-center">Page d'Insertion des Lycées de Bretagne</h2>
         <h3 class="text-center"> Bienvenue <?php echo $_SESSION["login"] ?></br> Vous êtes un
             <?php echo $_SESSION["statut"] ?></h3>
     </header>
+
+    <!-- Article -->
     <article>
         <?php
+        //Verifie que l'utilisateur est administrateur
 				if(!empty($_SESSION) && $_SESSION['statut']=='administrateur') {
                     ?>
         <div class="container my-5" id="accueil">
@@ -52,7 +62,7 @@
                             <p class="text-center">
                                 <?php
                     
-                                
+                                // SI le formulaire affciheFOrmualireLycee a été envoye on peut acceder à cette partie
                                 if (!empty($_POST)) {
                                         if ($_POST['captcha'] == $_SESSION['code']) {
                                             //Si le captcha est bon
@@ -73,8 +83,8 @@
                                             echo "<p class='text-center'>Code incorrect</p>";
                                         }
                                     }
-                                
-                                afficheFormulaireAjoutLycee();
+                            //Formulaire permettant d'ajouter un lyee
+                             afficheFormulaireAjoutLycee();
                             }
                         ?>
                             </p>
@@ -84,10 +94,15 @@
                 </div>
             </div>
     </article>
+    <!-- Footer -->
     <footer>
-     <?php
+        <?php
     afficheFooter();
     ?>
     </footer>
 </body>
+
 </html>
+<?php
+} 
+?>

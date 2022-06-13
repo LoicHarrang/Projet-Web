@@ -16,6 +16,7 @@
     </script>
 </head>
 <!-- Body -->
+
 <body class="container">
     <!-- Nav -->
     <nav class="navbar navbar-expand navbar-light bg-light py-3 sticky-top shadow p-3 mb-5 bg-white rounded">
@@ -24,14 +25,15 @@
 if (empty($_SESSION)) {
     redirect('connexion.php', 1);
 } //Sinon on affiche le Menu
-else{
- if (isset($_SESSION['statut']) && $_SESSION['statut'] == "administrateur") { //Menu admin
+else {
+    // Nav
+if (isset($_SESSION['statut']) && $_SESSION['statut'] == "administrateur") { //Menu admin
     afficherMenuAdmin();
 }
  else { //Menu Utilisateur
     afficherMenuUtilisateur();
 }
-
+//Deconnection
 if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['action'] == 'logout') {
     $_SESSION = array();
     session_destroy();
@@ -39,16 +41,19 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
 }
 ?>
     </nav>
+
     <!-- Header -->
     <header>
         <h2 class="h2 mb-4 my-sm-4 text-center">Page d'accueil des Lycées de Bretagne</h2>
         <h3 class="text-center"> Bienvenue <?php echo $_SESSION["login"] ?></br> Vous êtes un
             <?php echo $_SESSION["statut"] ?></h3>
     </header>
+
+    <!-- Article -->
     <article class='mb-5'>
         <div class="container mt-5 " id="accueil">
             <!-- Boostrap / card avec ombre sur les bords  -->
-            <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded "> 
+            <div class="card offset-1 col-10 shadow p-3 mb-5 bg-white rounded ">
                 <div class="card-body">
                     <div class="container">
                         <div class=" card-title">
@@ -95,9 +100,9 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
         afficheFooter();
         ?>
     </footer>
-    <?php
- }
- ?>
-</body>
 
+</body>
 </html>
+<?php
+}
+?>
