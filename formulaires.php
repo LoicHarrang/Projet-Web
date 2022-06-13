@@ -1,4 +1,5 @@
-<script src="js/Lycee.js" type="text/javascript"></script>
+<!-- Script de mdp-->
+<script src="js/Lycee.js" type="text/javascript"></script> 
 <?php
 //******************************************************************************
 function afficheMessageAccueil()  {

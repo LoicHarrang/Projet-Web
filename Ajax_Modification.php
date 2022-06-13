@@ -1,6 +1,6 @@
 <?php
 include 'fonctions.php';
-//Contenue Ajax MOdification
+//Page appelé Ajax MOdification
 
 //Test de l'envoie du formulaire Ajax
 if (!empty($_GET) && isset($_GET["noL"]))   {
