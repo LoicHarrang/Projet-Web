@@ -16,11 +16,11 @@ if (!empty($_GET) && isset($_GET["noL"]))   {
     //Affichage Tableau en fonction de la ville
     afficheTableauHTML($tab);
     }
-    else{
+    else{ //si l'insertion a échoué on affiche ce message
         echo"<h4 class='text-center'>erreure dans l'insertion";
     }
 }
-else{
+else{ // Si le formulaire n'a pas été envoye correctement,affiche ce message
     echo "<h4 class='text-center'>erreure dans l'insertion";
 }
 ?>

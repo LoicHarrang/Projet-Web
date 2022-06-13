@@ -1,4 +1,5 @@
 /*****************************************************************/
+//Function
 function listeFiltreUtilisateurs() {
 	var req_AJAX// Objet qui sera crée
 	if (window.XMLHttpRequest) {	// Mozilla, Safari

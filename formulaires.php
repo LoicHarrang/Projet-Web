@@ -2,11 +2,8 @@
 <script src="js/Lycee.js" type="text/javascript"></script> 
 <?php
 //******************************************************************************
-function afficheMessageAccueil()  {
-    echo "<h3> Bienvenue ".$_SESSION["login"]."</br>
-    Vous êtes un ".$_SESSION["statut"]."</h3>";
-}
-//******************************************************************************
+//Procédure permettant d'afficher le formulaire de connection
+//Methode Post
 function afficheFormulaireConnexion(){
     ?>
 <main class="offset-4 col-4 my-5 form-signin">
@@ -24,14 +21,16 @@ function afficheFormulaireConnexion(){
             <p id="msg_mdp">
             <p>
         </div>
-
+        <!-- Fonction JS de validation de conformité mot de passe/ Fonction Lycée.js -->
         <button class="w-100 btn btn-lg btn-primary mt-2" type="submit" name="connect" value="Connexion"
-            onclick="return validMdp()">Connexion</button>
+            onclick="return validMdp()">Connexion</button> 
+            
     </form>
 </main>
 <?php
     }
 //******************************************************************************
+//Procédure qui permet d'afficher le menu ADMIN
 function afficherMenuAdmin()
 {
     ?>
@@ -51,6 +50,7 @@ function afficherMenuAdmin()
 <?php
 }
 //******************************************************************************
+//Procédure qui permet d'afficher le menu Utilisateur
 function afficherMenuUtilisateur()
 {
     ?>
@@ -66,6 +66,8 @@ function afficherMenuUtilisateur()
 <?php
 }
 //******************************************************************************
+//Procédure qui permet d'afficher le formulaire avec un menu déroulant de choix de ville
+//Methode Get
 function afficheFormulaireChoixLycee(){
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
     $requete = "SELECT DISTINCT noL,nom FROM lycee;";
@@ -98,6 +100,8 @@ function afficheFormulaireChoixLycee(){
 	}// fin afficheFormulaireChoixUtilisateur
 
 //*******************************************************************************************
+//Procédure d'un formulaire avec le noL,nom,adresse, téléphone,la ville et le captcha
+//Methode Post
 function afficheFormulaireAjoutLycee(){
 
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
@@ -107,6 +111,7 @@ function afficheFormulaireAjoutLycee(){
         $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
 	?>
+    <!-- Bootstrap was-validated permettant de crée un formulaire qui se valide de facon dynamique grace a du js selon les pattern et les required -->
 <form class="offset-4 col-4 was-validated" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <fieldset>
         <div class="row mb-1">
@@ -141,7 +146,9 @@ function afficheFormulaireAjoutLycee(){
                         ?>
             </select>
         </div>
+        <!-- Captcha qui va chercher dans image.php une image au hasard et son on recick deçu va chercher une autre image de façon dynamique -->
         <div class="form-group">
+            <
             <label for="id_captcha" class="form-label">Captcha : </label>
             <img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha"
                 style="cursor:pointer;"></br>
@@ -155,6 +162,8 @@ function afficheFormulaireAjoutLycee(){
 	}// fin afficheFormulaireAjoutLycee
 
 //*******************************************************************************************
+//Procédure qui affiche un formulaire préremplie grace au information du noL et va mettre des valeurs qui sront fixes (ex : noL,ville)
+//Parametre noL
 function afficheFormulaireModification($noL){
     $_SESSION['modif'] = $noL;
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
@@ -203,6 +212,7 @@ function afficheFormulaireModification($noL){
                         ?>
                 </select>
             </div>
+            <!-- Ajax, on envoie pas le formulaire mais on active la fonction javascript listeFIltreUtilisateurs (repetoir : ajax/Ajax_MOdification) -->
             <button onclick='return listeFiltreUtilisateurs()'> Modifier </button>
     </fieldset>
 </div>
@@ -210,7 +220,8 @@ function afficheFormulaireModification($noL){
     echo "<br/>";
 }// fin afficheFormulaireModification
 
-      //*******************************************************************************************
+//*******************************************************************************************
+//Procédure qui affiche la liste des lycée
 function afficheListeLycee(){
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
     $requete = "SELECT DISTINCT nom,adresse,ville,telephone FROM lycee;";
@@ -220,6 +231,7 @@ function afficheListeLycee(){
         $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
+<!-- Boostrap qui permet d'avoir un tableau avec des couleurs qui alternent et une ombre autour de ce tableau -->
 <table class="table table-bordered table-striped shadow p-3 mb-5 bg-white rounded">
     <thead>
         <tr>
@@ -248,7 +260,8 @@ function afficheListeLycee(){
     echo "<br/>";
 }// fin afficheListeLycée
 //*******************************************************************************************
-
+//Procédure qui affiche un formulaire avec une liste déroulante pour choisir la ville qu'on veut avoir comme filtre
+//Methode Post
 function afficheFormulaireFiltre(){
     echo "<br/>";
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
@@ -281,7 +294,7 @@ function afficheFormulaireFiltre(){
           echo "<br/>";
 }// fin afficheFormulaireFiltre
 //*******************************************************************************************
-
+//Procédure qui affiche la tableau des vill en fonction d'un code postale
 function afficheListeLyceeFiltre($cp){
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
 
@@ -322,6 +335,7 @@ function afficheListeLyceeFiltre($cp){
 }// fin afficheListeLyceeFiltre
 
 //*******************************************************************************************
+//Procédure qui affiche un Carrousel boostrap
 function afficheCarousel(){
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
     $requete = "SELECT DISTINCT image FROM bac;";
@@ -330,7 +344,7 @@ function afficheCarousel(){
     if($resultat){
         $image = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
-
+    //On va cherche les images dans la bdd
     echo '
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -377,7 +391,8 @@ function afficheCarousel(){
             </div>
         ';
 }// fin afficheCarousel
-//*******************************************************************************************
+//*****************************************************************************************
+//Procédure affichant le footer
 function afficheFooter(){
     echo '
         <footer class="bg-light text-center text-lg-start ">
