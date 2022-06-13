@@ -56,7 +56,7 @@ else
 
                                     }
                                     echo "
-                                    <p  id='test'></p>";
+                                    <p id='test'></p>";
                                     ?>
                         </p>
                     </div>

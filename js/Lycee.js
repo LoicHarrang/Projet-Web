@@ -4,8 +4,8 @@ function validMdp() {
     var text = document.getElementById('msg_mdp');
     var mdp = document.getElementById('id_pass').value;
     console.log(mdp);
-    var pass = /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
-    if(pass.test(mdp)==true && mdp.length > 7){
+    var pass = /^(?=.{8,}$)(?=.*\w)(?=.*[-?!%=.]).*$/;
+    if(pass.test(mdp)==true){
         //alert("Votre mdp est bon");
         res = true;
        
