@@ -5,6 +5,10 @@
 //Parametre : URL de redirection et Délais avant la redirection
 //Retour : Aucun
 //*******************
+
+
+//Procédure de redirection
+//Parametre : url de la page  / tps -> temps en secondes
 function redirect($url,$tps)
 {
 $temps = $tps * 1000;
@@ -22,6 +26,9 @@ echo "<script type=\"text/javascript\">\n"
 
 }
 //*******************************************************************************************
+//Fonction de permetre de verifier le compte de l'utilisateur
+//Parametre : mail  / password
+//Retourne un tableau associatif en focntion du mail et du mot de passe
 function verifierCompte($mail,$pass)
 {
     $retour = false;
@@ -39,6 +46,9 @@ function verifierCompte($mail,$pass)
     return $retour;
 }
 //*******************************************************************************************
+//Fonction de permetre de verifier le compte de l'utilisateur est admin
+//Parametre : mail  
+//Retourne un tableau associatif en focntion du mail et du mot de passe
 function isAdmin($mail)
 {
     $retour = false ;
@@ -56,6 +66,8 @@ function isAdmin($mail)
     return $retour;
 }
 //*******************************************************************************************
+//Fonction de permetre de recuperer les infos nom serie, specialité
+//Retourne un tableau associatif des nom , serie et spécialité des lycée
 function recupereInfos()
 {
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
@@ -69,6 +81,9 @@ function recupereInfos()
     return $resultat;
 }
 //*******************************************************************************************
+//Procédure de permetre de verifier le compte de l'utilisateur est admin 
+//Parametre : un tableau
+
 function afficheTableauHTML($tab){
     echo '<table class="table table-bordered table-striped shadow p-3 mb-5 bg-white rounded col-12">';
     echo '<tr>';
@@ -87,6 +102,9 @@ function afficheTableauHTML($tab){
     echo '<hr/>';
 }
 //*******************************************************************************************
+//Fonction de permetre d'ajouter un lycee
+//Parametre : noL,nom,adresse,codepostal,telephone
+//Retourne un tableau associatif avec le nouveau lycee
 function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){
     $retour=0;
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
@@ -95,7 +113,8 @@ function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){
     $adresse= $madb->quote($adresse);
     $codepostal = $madb->quote($codepostal);
     $telephone = $madb->quote($telephone);
-
+    
+    //recuperation de la ville
     $ville = "SELECT ville FROM lycee where codepostal == $codepostal;";
     $query= $madb->query($ville);
     if($query)
@@ -105,6 +124,7 @@ function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){
     }
     $ville = $madb->quote($ville);
 
+    //une fois la ville recuperer on affiche la liste des lycees
     $requete ="INSERT INTO lycee VALUES ($noL,$nom,$adresse,$codepostal,$ville,$telephone);";
     $resultat =$madb->exec($requete);
     if ($resultat == false ) 
@@ -115,6 +135,9 @@ function ajoutLycee($noL,$nom,$adresse,$codepostal,$telephone){
 }
 
 //*******************************************************************************************
+//Fonction de permetre de modifier un lycee
+//Parametre : noL,nom,adresse,telephone
+//Retourne un tableau associatif avec les valeurs modifier
 function modifierLycee($noL,$nom,$adresse,$tel){
     $retour=0;
     $madb = new PDO('sqlite:bdd/bdd.sqlite');
@@ -133,6 +156,9 @@ function modifierLycee($noL,$nom,$adresse,$tel){
     return $retour;
 }
 //*********************************************************************************************
+//Fonction de permetre de lister les lycées par ville
+//Parametre : noL
+//Retourne un tableau associatif des lycée avec le meme noL
 function listeLyceeParVille($noL){
     $retour=false;
         $madb = new PDO('sqlite:bdd/bdd.sqlite');
