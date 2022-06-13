@@ -59,7 +59,7 @@ else
                             <?php
                                 
                                  afficheFormulaireChoixLycee();
-                                echo " <p id='test' ></p>";
+                                echo " <p id='formulaire_tableau' ></p>";
                             ?>
                         </p>
                     </div>
