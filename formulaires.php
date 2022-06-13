@@ -351,6 +351,19 @@ function afficheCarousel(){
                     <div class="carousel-item">
                         <img src="'.$image[5]['image'].'" class="d-block w-100" alt="" width="390" height="390">
                     </div>
+                    <div class="carousel-item">
+                    <img src="'.$image[6]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="'.$image[7]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="'.$image[8]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="'.$image[9]['image'].'" class="d-block w-100" alt="" width="390" height="390">
+                    </div>
+
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
