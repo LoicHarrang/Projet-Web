@@ -70,7 +70,7 @@ function recupereInfos()
 }
 //*******************************************************************************************
 function afficheTableauHTML($tab){
-    echo '<table class"table">';
+    echo '<table class="table table-bordered table-striped shadow p-3 mb-5 bg-white rounded col-12">';
     echo '<tr>';
     foreach($tab[0] as $cle=>$valeur){
         echo "<th scope='col'>$cle</th>";

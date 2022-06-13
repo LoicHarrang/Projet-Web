@@ -49,15 +49,9 @@ else
                         <p class="text-center">
                             <?php
                                 
-                                afficheFormulaireChoixLycee();
-                                    if(isset($_POST['nom']) && isset($_POST['adr']) && isset($_POST['tel']))
-                                    {
-                                        modifierLycee($_SESSION['modif'],$_POST['nom'],$_POST['adr'],$_POST['tel']);
-
-                                    }
-                                    echo "
-                                    <p id='test'></p>";
-                                    ?>
+                                 afficheFormulaireChoixLycee();
+                                echo " <p id='test' ></p>";
+                            ?>
                         </p>
                     </div>
                 </div>

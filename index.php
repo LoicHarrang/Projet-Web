@@ -23,9 +23,11 @@
 if (empty($_SESSION)) {
     redirect('connexion.php', 1);
 } //Sinon on affiche le Menu
-else if (isset($_SESSION['statut']) && $_SESSION['statut'] == "administrateur") { //Menu admin
+else{
+ if (isset($_SESSION['statut']) && $_SESSION['statut'] == "administrateur") { //Menu admin
     afficherMenuAdmin();
-} else { //Menu Utilisateur
+}
+ else { //Menu Utilisateur
     afficherMenuUtilisateur();
 }
 
@@ -67,6 +69,7 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
 
                         if(!empty($_SESSION) && isset($_SESSION['statut'])   && !isset($_POST['ville']) && isset($_GET['action']) && $_GET['action'] == 'liste_utilisateur_ville' )
                         {
+                            
                             afficheFormulaireFiltre();
                         }
 
@@ -86,6 +89,9 @@ if (!empty($_SESSION) && !empty($_GET) && isset($_GET['action']) && $_GET['actio
         afficheFooter();
         ?>
     </footer>
+    <?php
+ }
+ ?>
 </body>
 
 </html>

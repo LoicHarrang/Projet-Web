@@ -34,18 +34,18 @@ function afficheFormulaireConnexion(){
 function afficherMenuAdmin()
 {
     ?>
-    <div class="collapse navbar-collapse justify-content-center">
-        <ul class="navbar-nav  ">
-            <li class="nav-item"><a class="nav-link" href="index.php"> Accueil</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.php?action=liste_utilisateur_ville"> Lister les lycées
-                    par ville</a></li>
-            <li class="nav-item"><a class="nav-link " href="insertion.php?action=inserer_utilisateur"> Insérer un
-                    lycée</a></li>
-            <li class="nav-item"><a class="nav-link " href="modification.php">Modifier un lycée</a></li>
-            <li class="nav-item"><a class="nav-link " href="index.php?action=logout" title="Déconnexion">Se
-                    deconnecter</a></li>
-        </ul>
-    </div>
+<div class="collapse navbar-collapse justify-content-center">
+    <ul class="navbar-nav  ">
+        <li class="nav-item"><a class="nav-link" href="index.php"> Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php?action=liste_utilisateur_ville"> Lister les lycées
+                par ville</a></li>
+        <li class="nav-item"><a class="nav-link " href="insertion.php?action=inserer_utilisateur"> Insérer un
+                lycée</a></li>
+        <li class="nav-item"><a class="nav-link " href="modification.php">Modifier un lycée</a></li>
+        <li class="nav-item"><a class="nav-link " href="index.php?action=logout" title="Déconnexion">Se
+                deconnecter</a></li>
+    </ul>
+</div>
 
 <?php
 }
@@ -53,16 +53,14 @@ function afficherMenuAdmin()
 function afficherMenuUtilisateur()
 {
     ?>
-<div class="container ">
-    <header class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link text-black" href="index.php"> Accueil</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="index.php?action=liste_utilisateur_ville"> Lister
-                    les lycées par ville</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="index.php?action=logout" title="Déconnexion">Se
-                    deconnecter</a></li>
-        </ul>
-    </header>
+<div class="collapse navbar-collapse justify-content-center">
+    <ul class="navbar-nav  ">
+        <li class="nav-item"><a class="nav-link" href="index.php"> Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php?action=liste_utilisateur_ville"> Lister les lycées
+                par ville</a></li>
+        <li class="nav-item"><a class="nav-link " href="index.php?action=logout" title="Déconnexion">Se
+                deconnecter</a></li>
+    </ul>
 </div>
 <?php
 }
@@ -81,8 +79,9 @@ function afficheFormulaireChoixLycee(){
     <fieldset>
         <div class="form-group my-2 offset-4 col-4">
             <label for="id_mail" class="form-label">Choisir un Lycée</label>
-            <select id="id_mail" class="form-select custom-select-lg " name="noL" size="1" onchange="formulaireModification(this)" required>
-            <option value="" selected disabled>------</option>
+            <select id="id_mail" class="form-select custom-select-lg " name="noL" size="1"
+                onchange="formulaireModification(this)" required>
+                <option value="" selected disabled>------</option>
                 <?php
 					foreach ($lycees as $lycee)
                     {
@@ -260,21 +259,21 @@ function afficheFormulaireFiltre(){
         $villes = $query->fetchAll(PDO::FETCH_ASSOC);}
 
     ?>
-    
+
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <fieldset>
-    <div class="form-group  offset-4 col-4">
-        <label for="id_ville" class="form-label">Ville :</label>
-        <select id="id_ville" class="form-select custom-select-lg " name="ville"  required size="1">
-        <option value="" selected disabled>------</option>
-            <?php
+        <div class="form-group  offset-4 col-4">
+            <label for="id_ville" class="form-label">Ville :</label>
+            <select id="id_ville" class="form-select custom-select-lg " name="ville" required size="1">
+                <option value="" selected disabled>------</option>
+                <?php
                     foreach ($villes as $ville)
                     {
                         echo '<option value='.$ville['codepostal'].'> '.$ville['codepostal'].' '.$ville['ville'].' </option>';
                     }
                     ?>
-        </select></br>
-        <input type="submit" value="Rechercher Lycée par Ville" />
+            </select></br>
+            <input type="submit" value="Rechercher Lycée par Ville" />
     </fieldset>
 </form>
 <?php
@@ -293,10 +292,10 @@ function afficheListeLyceeFiltre($cp){
         $lycees = $resultat->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
-<table class="table">
+<table class="table table-bordered table-striped shadow p-3 mb-5 bg-white rounded">
     <thead>
         <tr>
-            <th scope="col">Nom</th>
+            <th scope="col m">Nom</th>
             <th scope="col">Adresse</th>
             <th scope="col">Ville</th>
             <th scope="col">Téléphone</th>
